@@ -1,32 +1,427 @@
-﻿@{
-    ViewBag.Title = "Home Page";
-}
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>HomePage</title>
+    <meta charset="utf-8" />
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-</div>
-<!--SAPIR K-->
-<!--SAPIR K2-->
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
+    <script>
+        window.onload = function () {
+
+            var chart = new CanvasJS.Chart("chartContainer", {
+                animationEnabled: true,
+                theme: "light2",
+                title: {
+                    text: "Simple Line Chart"
+                },
+                data: [{
+                    type: "line",
+                    indexLabelFontSize: 16,
+                    dataPoints: [
+                        { y: 0 },
+                        { y: 0 },
+                        { y: 520, indexLabel: "\u2191 highest", markerColor: "red", markerType: "triangle" },
+                        { y: 460 },
+                        { y: 450 },
+                        { y: 500 },
+                        { y: 480 },
+                        { y: 480 },
+                        { y: 410, indexLabel: "\u2193 lowest", markerColor: "DarkSlateGrey", markerType: "cross" },
+                        { y: 500 },
+                        { y: 480 },
+                        { y: 510 }
+                    ]
+                }]
+            });
+            chart.render();
+
+        }
+    </script>
+
+</head>
+<body>
+
+    <div id="chartContainer" style="height: 300px; max-width:500px; margin: 0px auto;  left:0px"></div>
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+    <!---->
+
+
+    <style>
+        .container {
+            position: relative;
+        }
+
+        div.fixed {
+            position: fixed;
+            top: 8px;
+            left: 16px;
+            border: 3px solid #73AD21;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 70%;
+            position: static;
+            top: 400px;
+            left: 16px;
+            border: 3px solid #73AD21;
+        }
+
+        #customers {
+            font-family: Arial, Helvetica, sans-serif;
+            border-collapse: collapse;
+            width: 70%;
+        }
+
+            #customers td, #customers th {
+                border: 1px solid #ddd;
+                padding: 8px;
+            }
+
+            #customers tr:nth-child(even) {
+                background-color: #f2f2f2;
+            }
+
+            #customers tr:hover {
+                background-color: #ddd;
+            }
+
+            #customers th {
+                padding-top: 12px;
+                padding-bottom: 12px;
+                text-align: left;
+                background-color: #4CAF50;
+                color: white;
+            }
+
+        div.drag {
+            position: relative;
+            top: 0px;
+            left: 800px;
+            border: 3px solid #73AD21;
+        }
+
+        div.modellist {
+            width: 20%;
+            position: absolute;
+            top: 0px;
+            border: 3px solid #73AD21;
+        }
+
+        .topleft {
+            position: absolute;
+            top: 8px;
+            left: 16px;
+            font-size: 18px;
+        }
+
+        img {
+            width: 100%;
+            height: auto;
+            opacity: 0.3;
+        }
+
+        #file-selector {
+            border: 5px dashed red;
+            width: 200px;
+            height: 200px;
+        }
+
+        html * {
+            color: #000 !important;
+            font-family: Arial !important;
+        }
+    </style>
+    <div class="table">
+        <h2>Models Table</h2>
+        <table id="customers">
+            <tr>
+                <th>Id</th>
+                <th>Upload Time</th>
+                <th>Status</th>
+                <th>Anomaly</th>
+                <th>Reason</th>
+            </tr>
+        </table>
+
+
+        <script src="../Scripts/jquery-3.1.1.js"></script>
+        <script>
+            var productsUrl = "../api/models";
+            $.getJSON(productsUrl, function (data) {
+
+                data.forEach(function (product) {
+                    $("#customers").append("<tr><td>" + product.Id + "</td>" +
+                        "<td>" + product.UploadTime + "</td>" +
+                        "<td>" + product.Status + "</td>" +
+                        "<td>" + 0 + "</td>" +
+                        "<td>" + 0 + "</td></tr>"
+                    );
+
+                });
+            });
+        </script>
+    </div>
+    <!--
+        <div class="drag">
+
+            <h2>
+                Custom drag-and-drop
+            </h2>
+            <div id="file-selector" accept="image/*" ></div>
+            <ul id="output" accept="image/*"></ul>
+            <script>
+                const fileSelector = document.getElementById('file-selector');
+                const output = document.getElementById('output');
+
+                if (window.FileList && window.File) {
+                    fileSelector.addEventListener('dragover', event => {
+                        event.stopPropagation();
+                        event.preventDefault();
+                        event.dataTransfer.dropEffect = 'copy';
+                    });
+                    fileSelector.addEventListener('drop', event => {
+                        output.innerHTML = '';
+                        event.stopPropagation();
+                        event.preventDefault();
+                        const files = event.dataTransfer.files;
+                        for (let i = 0; i < files.length; i++) {
+                            const li = document.createElement('li');
+                            const file = files[i];
+
+                          if (file.type=="application/vnd.ms-excel") {
+
+
+                            const name = file.name ? file.name : 'NOT SUPPORTED';
+                            const type = file.type ? file.type : 'NOT SUPPORTED';
+                            const size = file.size ? file.size : 'NOT SUPPORTED';
+                            li.textContent = `name: ${name}, type: ${type}`;
+                            output.appendChild(li);
+                       }
+                        }
+                    });
+                }
+            </script>
+        </div>
+        -->
+
+
+    <div class="modellist">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style>
+            * {
+                box-sizing: border-box;
+            }
+
+            #myInput {
+                background-image: url('/css/searchicon.png');
+                background-position: 10px 12px;
+                background-repeat: no-repeat;
+                width: 100%;
+                font-size: 12px;
+                padding: 6px 10px 6px 20px;
+                border: 1px solid #ddd;
+                margin-bottom: 12px;
+            }
+
+            #myUL {
+                list-style-type: none;
+                padding: 0;
+                margin: 0;
+                width: 100%;
+            }
+
+                #myUL li a {
+                    border: 1px solid #ddd;
+                    margin-top: -1px; /* Prevent double borders */
+                    background-color: #f6f6f6;
+                    padding: 5px;
+                    text-decoration: none;
+                    font-size: 12px;
+                    color: black;
+                    display: block
+                }
+
+                    #myUL li a:hover:not(.header) {
+                        background-color: #eee;
+                    }
+        </style>
+
+
+        <h3>Models</h3>
+
+        <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name">
+
+        <ul id="myUL">
+
+            <li><a href="#" id="click">Model_1</a></li>
+            <li><a href="#">Model_2</a></li>
+
+        </ul>
+        <script type="text/javascript">
+            function clicka() {
+                //// var productsUrl = "../api/models";
+                $.getJSON(productsUrl, function (data) {
+
+                    data.forEach(function (product) {
+                        $("#customers").append("<tr><td>" + 5 + "</td>" +
+                            "<td>" + 3 + "</td>" +
+                            "<td>" + 4 + "</td>" +
+                            "<td>" + 0 + "</td>" +
+                            "<td>" + 0 + "</td></tr>"
+                        );
+
+                    });
+                });
+            }
+            document.getElementById('click').onclick = clicka;
+        </script>
+        <script>
+            var productsUrl = "../api/models";
+            $.getJSON(productsUrl, function (data) {
+
+                data.forEach(function (product) {
+                    $("#myUL").append("<li><a href=>" + "Model_" + product.Id + "</a></li>"
+                    );
+                });
+            });
+        </script>
+
+
+
+        <script>
+            function myFunction() {
+                var input, filter, ul, li, a, i, txtValue;
+                input = document.getElementById("myInput");
+                filter = input.value.toUpperCase();
+                ul = document.getElementById("myUL");
+                li = ul.getElementsByTagName("li");
+                for (i = 0; i < li.length; i++) {
+                    a = li[i].getElementsByTagName("a")[0];
+                    txtValue = a.textContent || a.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        li[i].style.display = "";
+                    } else {
+                        li[i].style.display = "none";
+                    }
+                }
+            }
+        </script>
+
+        <p id="demo" onclick="my1Function()">Click me to change my text color.</p>
+
+        <script>
+            function my1Function() {
+                document.getElementById("demo").style.color = "red";
+            }
+        </script>
+
+
+
+    </div>
+
+    <div>
+
+
+        <p>Click on the "Choose File" button to upload: </p>
+
+
         <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
+            CSV file:
         </p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+        <form name="form1" method="post" action="../api/docfile" enctype="multipart/form-data">
+            <div>
+                <input name="csv" accept=".csv" type="file" />
+            </div>
+            <div>
+                <input type="submit" value="Upload" />
+            </div>
+        </form>
+        <p>
+            train file:
+        </p>
+        <form name="form1" method="post" action="../api/docfile" enctype="multipart/form-data">
+            <div>
+                <input name="train" accept=".csv" type="file" />
+            </div>
+            <div>
+                <input type="submit" value="Upload" />
+            </div>
+        </form>
+
+        <br><br>
+
+        <form action="/action_page.php">
+            <label for="cars">Choose algorithm:</label>
+            <select name="cars" id="cars">
+                <option value="volvo">hybrid</option>
+                <option value="saab">regression</option>
+            </select>
+            <br><br>
+            <input type="submit" value="Submit">
+        </form>
+
+
+
+
     </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-    </div>
-</div>
+
+    <!--
+
+    <br />
+    <script>
+        var r = {
+            '10': [19, 39, 49, 79, 199],
+            '20': [39, 49, 79, 199, 239],
+            '50': [49, 79, 199, 239, 299],
+            '90': [79, 199, 239, 299, 399]
+        };
+        $(document).ready(function () {
+            $('#s1').on('change', function (e) {
+                var v = $(this).val();
+                $('[id^="lev"]').text(function (idx, text) {
+                    return r[v][idx];
+                });
+            });
+        });
+    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+    <select id="s1">
+        <option value="10">10</option>
+        <option value="20">20</option>
+        <option value="50">30</option>
+        <option value="90">40</option>
+    </select>
+
+    <table class="table11">
+        <thead>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Level 5</td>
+                <td id="lev5">2000</td>
+            </tr>
+            <tr>
+                <td>Level 4</td>
+                <td id="lev4">1000</td>
+            </tr>
+            <tr>
+                <td>Level 3</td>
+                <td id="lev3">500</td>
+            </tr>
+            <tr>
+                <td>Level 2</td>
+                <td id="lev2">200</td>
+            </tr>
+            <tr>
+                <td>Level 1</td>
+                <td id="lev1">100</td>
+            </tr>
+        </tbody>
+    </table>
+
+
+        -->
+
+</body>
+</html>
