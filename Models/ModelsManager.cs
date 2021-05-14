@@ -5,7 +5,7 @@ using System.Web;
 
 namespace WebApplication13.Models
 {
-    public class ModelsManager
+    public class ModelsManager : IModelsManager
     {
 
         private static List<Model> products = new List<Model>()
