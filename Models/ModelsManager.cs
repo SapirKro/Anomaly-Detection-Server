@@ -12,9 +12,7 @@ namespace WebApplication13.Models
         {
             new Model { Id = 3, UploadTime ="20210430T21:30:55+02.00",Status= "ready" },
             new Model { Id = 4, UploadTime ="20210430T22:31:55+02.00",Status= "pending" },
-            new Model { Id = 5, UploadTime ="20210430T23:32:55+02.00",Status= "ready" },
-
-    };
+            new Model { Id = 5, UploadTime ="20210430T23:32:55+02.00",Status= "ready" },    };
 
         public void AddModel(Model p)
         {
