@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿﻿
+<!DOCTYPE html>
 <html>
 <head>
     <title>HomePage</title>
@@ -144,12 +145,16 @@
         </table>
 
 
-        <script src="../Scripts/jquery-3.1.1.js"></script>
+        <!-- <script src="../Scripts/jquery-3.1.1.js"></script> -->
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+
+
         <script>
             var productsUrl = "../api/models";
             $.getJSON(productsUrl, function (data) {
 
                 data.forEach(function (product) {
+                    
                     $("#customers").append("<tr><td>" + product.Id + "</td>" +
                         "<td>" + product.UploadTime + "</td>" +
                         "<td>" + product.Status + "</td>" +
@@ -251,36 +256,66 @@
 
         <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name">
 
-        <ul id="myUL">
+       <ul id="myUL">
 
-            <li><a href="#" id="click">Model_1</a></li>
-            <li><a href="#">Model_2</a></li>
+            <li><a href="#"  onclick="clicka(event)" id="click">Model_1_chk</a></li>
+            <li><a href="#"  onclick="clicka(event)">Model_2_chk_chk_chk_chk</a></li>
 
         </ul>
         <script type="text/javascript">
-            function clicka() {
-                //// var productsUrl = "../api/models";
+            function clicka(event) {
+                console.log("eve" + event.target.text);
+                var num = event.target.text.match(/[\d\.]+/g);
+                console.log("num " + num);
+
+
+                var productsUrl = "../api/models";
                 $.getJSON(productsUrl, function (data) {
+                    console.log(data);
 
-                    data.forEach(function (product) {
-                        $("#customers").append("<tr><td>" + 5 + "</td>" +
-                            "<td>" + 3 + "</td>" +
-                            "<td>" + 4 + "</td>" +
-                            "<td>" + 0 + "</td>" +
-                            "<td>" + 0 + "</td></tr>"
-                        );
-
+                    var arrItems = [];      // THE ARRAY TO STORE JSON ITEMS.
+                    $.each(data, function (index, value) {
+                        console.log(value.Id);
+                       
+                        if (num == (value.Id)) {
+                            arrItems.push(value);
+                        }// PUSH THE VALUES INSIDE THE ARRAY.
                     });
+
+                    console.log(arrItems);
+
+
+                    console.log("num " + num);
+
+
+                    $("#customers").html("");
+
+
+                    /// + product.UploadTime + "</td>" +
+                  ////  "<td>" + product.Status
+                    $("#customers").append("  <tr>   <th>Id</th>                <th>Upload Time</th>                <th>Status</th>                <th>Anomaly</th>                <th>Reason</th>            </tr >");
+
+                    $("#customers").append("<tr><td>" + arrItems[0].Id + "</td>" +
+                        "<td>" + arrItems[0].UploadTime + "</td>" +
+                        "<td>" + arrItems[0].Status + "</td>" +
+                        "<td>" + 3 + "</td>" +
+                        "<td>" + 0 + "</td></tr>");
+                   /*
+                    $("#customers").append("<tr><td>" + 5 + "</td>" +
+                        "<td>" + 3 + "</td>" +
+                        "<td>" + 4 + "</td>" +
+                        "<td>" + 0 + "</td>" +
+                        "<td>" + 0 + "</td></tr>"     );*/
                 });
             }
-            document.getElementById('click').onclick = clicka;
+        //    document.getElementById('click').onclick = clicka(event);
         </script>
         <script>
             var productsUrl = "../api/models";
             $.getJSON(productsUrl, function (data) {
 
                 data.forEach(function (product) {
-                    $("#myUL").append("<li><a href=>" + "Model_" + product.Id + "</a></li>"
+                    $("#myUL").append("<li><a onclick="+clicka(event)+" href=#>" + "Model_" + product.Id + "</a> </li>"
                     );
                 });
             });
