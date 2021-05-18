@@ -4,6 +4,10 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
+using System.Text;
+using System.Threading.Tasks;
+
+using CLI;
 namespace WebApplication13.Controllers
 {
     public class HomeController : Controller
@@ -22,8 +26,11 @@ namespace WebApplication13.Controllers
 
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
-
+            ViewBag.Message1 = "Your contact page.1";
+            
+            ex1main e1 = new ex1main(35);
+            int num = e1.mymain();
+            ViewBag.Message2 = num;
             return View();
         }
     }

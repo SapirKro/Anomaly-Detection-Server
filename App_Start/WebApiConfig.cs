@@ -14,7 +14,7 @@ namespace WebApplication13
             //SAPIR
             // Web API routes
             config.MapHttpAttributeRoutes();
-
+           
             config.Formatters.JsonFormatter.SupportedMediaTypes.Add(new MediaTypeHeaderValue("text/html"));
 
             config.Routes.MapHttpRoute(

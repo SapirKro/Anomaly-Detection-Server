@@ -144,6 +144,9 @@
       <Private>True</Private>
       <HintPath>packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
     </Reference>
+    <Reference Include="Wrapper">
+      <HintPath>..\CLIExample\Debug\Wrapper.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json">
@@ -167,6 +170,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\DefaultController.cs" />
     <Compile Include="Controllers\DocFileController.cs" />
     <Compile Include="Controllers\FileUploadingController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -180,6 +184,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="anomaly\anomaly_detection_util.cpp" />
+    <Content Include="anomaly\anomaly_detection_util.h" />
+    <Content Include="anomaly\MainTrain.cpp" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />

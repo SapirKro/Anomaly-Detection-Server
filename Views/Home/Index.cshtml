@@ -6,6 +6,7 @@
     <meta charset="utf-8" />
 
     <script>
+       
         window.onload = function () {
 
             var chart = new CanvasJS.Chart("chartContainer", {
@@ -265,6 +266,7 @@
         <script type="text/javascript">
             function clicka(event) {
                 console.log("eve" + event.target.text);
+                
                 var num = event.target.text.match(/[\d\.]+/g);
                 console.log("num " + num);
 
