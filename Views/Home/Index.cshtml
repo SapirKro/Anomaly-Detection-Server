@@ -358,10 +358,10 @@
 
     <div>
 
-
+        <!--
         <p>Click on the "Choose File" button to upload: </p>
 
-
+       
         <p>
             CSV file:
         </p>
@@ -375,18 +375,36 @@
         </form>
         <p>
             train file:
-        </p>
+        </p>-->
         <form name="form1" method="post" action="../api/docfile" enctype="multipart/form-data">
+            <p>
+                CSV file:
+            </p>
+            <div>
+              <input name="csv" accept=".csv" type="file" />
+            </div>
+
+            <p>
+                train file:
+            </p>
             <div>
                 <input name="train" accept=".csv" type="file" />
             </div>
             <div>
-                <input type="submit" value="Upload" />
+                <!--
+    <input type="submit" value="Upload" />-->
             </div>
+            <label for="cars">Choose algorithm:</label>
+            <select name="cars" id="cars">
+                <option value="hybrid">hybrid</option>
+                <option value="regression">regression</option>
+            </select>
+            <br><br>
+            <input type="submit" value="Submit">
         </form>
 
         <br><br>
-
+        <!--
         <form action="/action_page.php">
             <label for="cars">Choose algorithm:</label>
             <select name="cars" id="cars">
@@ -395,7 +413,7 @@
             </select>
             <br><br>
             <input type="submit" value="Submit">
-        </form>
+        </form>-->
 
 
 

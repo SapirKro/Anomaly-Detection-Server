@@ -15,6 +15,7 @@ namespace WebApplication13.Controllers
     {
         private List<String> mydocfiles = new List<string>();
    
+
         public HttpResponseMessage Post()
         {
             HttpResponseMessage result = null;
@@ -24,12 +25,15 @@ namespace WebApplication13.Controllers
                 System.Console.WriteLine("You received the call!");
                 foreach (string file in httpRequest.Files)
                 {
-                    var postedFile = httpRequest.Files[file];
-                    var filePath = HttpContext.Current.Server.MapPath("~/" + postedFile.FileName);
-                    postedFile.SaveAs(filePath);
-                    mydocfiles.Add(filePath);
 
+                    var postedFile = httpRequest.Files[file];
+                    
+                        var filePath = HttpContext.Current.Server.MapPath("~/" + postedFile.FileName);
+                        postedFile.SaveAs(filePath);
+                        mydocfiles.Add(filePath);
                 }
+
+                string sText = HttpContext.Current.Request.Form["cars"];
 
                 result = Request.CreateResponse(HttpStatusCode.Created, mydocfiles);
             }
