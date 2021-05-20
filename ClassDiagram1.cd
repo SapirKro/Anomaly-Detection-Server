@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
+  <Class Name="WebApplication13.Models.ModelsManager">
+    <Position X="8.75" Y="2.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAIAQAAAAAAACABABAAAAAg=</HashCode>
+      <FileName>Models\ModelsManager.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.325" />
+  </Class>
+  <Class Name="WebApplication13.Models.Model">
+    <Position X="6.25" Y="1.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQA=</HashCode>
+      <FileName>Models\Model.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="WebApplication13.Models.IModelsManager">
+    <Position X="8.75" Y="0.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAIAQAAAAAAACABAAAAAAAg=</HashCode>
+      <FileName>Models\IModelsManager.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
