@@ -8,6 +8,7 @@ namespace WebApplication13
 {
     public static class WebApiConfig
     {
+
         public static void Register(HttpConfiguration config)
         {
             // Web API configuration and services
@@ -22,6 +23,7 @@ namespace WebApplication13
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
+
         }
     }
 }

@@ -138,10 +138,9 @@
         <table id="customers">
             <tr>
                 <th>Id</th>
-                <th>Upload Time</th>
-                <th>Status</th>
-                <th>Anomaly</th>
-                <th>Reason</th>
+                <th>Time</th>
+                <th>Description</th>
+               
             </tr>
         </table>
 
@@ -157,10 +156,9 @@
                 data.forEach(function (product) {
                     
                     $("#customers").append("<tr><td>" + product.Id + "</td>" +
-                        "<td>" + product.UploadTime + "</td>" +
-                        "<td>" + product.Status + "</td>" +
-                        "<td>" + 0 + "</td>" +
-                        "<td>" + 0 + "</td></tr>"
+                        "<td>" + product.Time + "</td>" +
+                        "<td>" + product.Description + "</td></tr>"
+                       
                     );
 
                 });

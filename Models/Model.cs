@@ -9,8 +9,10 @@ namespace WebApplication13.Models
     {
 
         public int Id { get; set; }
-        public string UploadTime { get; set; }
-        public String Status { get; set; }
+      
+        public string Description { get; set; }
+
+        public string Time { get; set; }
 
 
     }
