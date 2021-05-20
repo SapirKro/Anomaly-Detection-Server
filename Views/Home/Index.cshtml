@@ -138,9 +138,10 @@
         <table id="customers">
             <tr>
                 <th>Id</th>
-                <th>Time</th>
                 <th>Description</th>
-               
+                <th>Time</th>
+
+
             </tr>
         </table>
 
@@ -156,8 +157,8 @@
                 data.forEach(function (product) {
                     
                     $("#customers").append("<tr><td>" + product.Id + "</td>" +
-                        "<td>" + product.Time + "</td>" +
-                        "<td>" + product.Description + "</td></tr>"
+                        "<td>" + product.Description + "</td>" +
+                        "<td>" + product.Time + "</td></tr>"
                        
                     );
 
@@ -293,13 +294,11 @@
 
                     /// + product.UploadTime + "</td>" +
                   ////  "<td>" + product.Status
-                    $("#customers").append("  <tr>   <th>Id</th>                <th>Upload Time</th>                <th>Status</th>                <th>Anomaly</th>                <th>Reason</th>            </tr >");
+                    $("#customers").append("  <tr>   <th>Id</th>                <th>Description</th>                <th>Time</th></tr >");
 
                     $("#customers").append("<tr><td>" + arrItems[0].Id + "</td>" +
-                        "<td>" + arrItems[0].UploadTime + "</td>" +
-                        "<td>" + arrItems[0].Status + "</td>" +
-                        "<td>" + 3 + "</td>" +
-                        "<td>" + 0 + "</td></tr>");
+                        "<td>" +  arrItems[0].Description+ "</td>" +
+                        "<td>" + arrItems[0].Time + "</td></tr>" );
                    /*
                     $("#customers").append("<tr><td>" + 5 + "</td>" +
                         "<td>" + 3 + "</td>" +

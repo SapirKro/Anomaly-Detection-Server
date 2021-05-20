@@ -14,7 +14,10 @@ using Newtonsoft.Json;
 namespace WebApplication13.Controllers
 {
 
-    public struct numberOfModels
+    /// <summary>
+    /// global struct so we can get to the models from other Controllers
+    /// </summary>
+    public struct globalsModels
     {
         public static int num;
         public static ModelsManager allmodels = new ModelsManager();
@@ -26,7 +29,10 @@ namespace WebApplication13.Controllers
         private List<String> mydocfiles = new List<string>();
          DetectorServer server;
 
-
+        /// <summary>
+        /// load json file and add every AnomalyObject to the models.(so we can see the anomalys in the homepage's table)
+        /// </summary>
+        /// <param name="jsonPath"></param>
         public void LoadJson(string jsonPath)
         {
             List<AnomalyObject> all = new List<AnomalyObject>();
@@ -40,10 +46,10 @@ namespace WebApplication13.Controllers
             {
                 string des = all[i].description;
                 string time = all[i].timeStep;
-                int modelid = numberOfModels.num;
+                int modelid = globalsModels.num;
                 Model a = new Model { Id = modelid, Description = des, Time = time, };
 
-                numberOfModels.allmodels.AddModel(a);
+                globalsModels.allmodels.AddModel(a);
             }
             Console.WriteLine("done");
         }
@@ -55,11 +61,9 @@ namespace WebApplication13.Controllers
         }
 
 
-        /// GET csv files from the home page.the users upload the files though the homepage and the function save them in 
-        ///the project location.
+        /// post method. the users upload the csv files though the homepage and the function save them in 
+        ///the folder "App_Data" in the project location.
         ////the full path for the files saved in mydocfiles
-
-
 
         public HttpResponseMessage Post()
         {
@@ -76,9 +80,7 @@ namespace WebApplication13.Controllers
             return response1;*/
 
 
-
-
-
+            ///upload the files
             if (httpRequest.Files.Count > 0)
             {
                 System.Console.WriteLine("You received the call!");
@@ -86,8 +88,9 @@ namespace WebApplication13.Controllers
                 string testFileDString = "testFile";
                 string name;
                 string AlgoType = HttpContext.Current.Request.Form["cars"];
-                numberOfModels.num++;
-                ///>>>>>>>>if loop to only for testing .delete later<<<<<<<<<
+                globalsModels.num++;
+               
+                ///////>>>>>>>>if loop to only for testing .delete later<<<<<<<<<
                 /////if submit is pressed without any upload file
                 if (httpRequest.Files[0].FileName == "")
                 {
@@ -97,7 +100,8 @@ namespace WebApplication13.Controllers
                     response1.Headers.Location = new Uri("http://localhost:9876/");
                     return response1;
                 }
-
+                ///////>>>>>>>>if loop ^^^^^^^^^^ to only for testing .delete later<<<<<<<<<
+                ///
                 foreach (string file in httpRequest.Files)
                 {
                    
@@ -106,31 +110,34 @@ namespace WebApplication13.Controllers
                     name = postedFile.FileName;
                     if (file == trainFileString)
                     {
-                        name =trainFileString + AlgoType + numberOfModels.num + name;
+                        name =trainFileString + AlgoType + globalsModels.num + name;
                        
                     }
                     if (file == testFileDString)
                     {
-                        name = testFileDString + AlgoType + numberOfModels.num+ name;
+                        name = testFileDString + AlgoType + globalsModels.num+ name;
 
                     }
                     var filePath = HttpContext.Current.Server.MapPath("~/App_Data/" + name);
                         postedFile.SaveAs(filePath);
                         mydocfiles.Add(filePath);
                 }
-                string jsonName = "Model_" + numberOfModels.num + ".json";
+                ////sending the files to the server
+                string jsonName = "Model_" + globalsModels.num + ".json";
                 var serverUploadPath = HttpContext.Current.Server.MapPath("~/App_Data/"+ jsonName);
                 String trainFilePath = mydocfiles[0];
                 String testFilePath = mydocfiles[1];
                 AlgoType = AlgoType.ToLower();
-                result = Request.CreateResponse(HttpStatusCode.Created, mydocfiles);
-                var response = Request.CreateResponse(HttpStatusCode.Moved);
-                response.Headers.Location = new Uri("http://localhost:9876/");
-
+            
                 server = new DetectorServer(trainFilePath, testFilePath, AlgoType, serverUploadPath);
              server.Serialize();
                 Console.WriteLine("done");
               LoadJson(serverUploadPath);
+
+                result = Request.CreateResponse(HttpStatusCode.Created, mydocfiles);
+                ///redirecting back to the homepage
+                var response = Request.CreateResponse(HttpStatusCode.Moved);
+                response.Headers.Location = new Uri("http://localhost:9876/");
                 return response;
             }
             else

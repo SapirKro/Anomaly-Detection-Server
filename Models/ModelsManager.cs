@@ -13,8 +13,8 @@ namespace WebApplication13.Models
 
         private static List<Model> products = new List<Model>()
         {
-             new Model { Id = 1,Description= "ready", Time =":30:55+02.00" },
-              new Model { Id = 2,Description= "pending", Time ="20210430T21:30:55+02.00", },
+             new Model { Id = 1,Description= "BLABLA", Time ="100" },
+              new Model { Id = 2,Description= "ggfg", Time ="20000", },
           };
 
         public void AddModel(Model p)

@@ -36,7 +36,7 @@ namespace WebApplication13.Controllers
             {
                 await Request.Content
                     .ReadAsMultipartAsync(provider);
-                numberOfModels.num++;
+                globalsModels.num++;
 
                 foreach (var file in provider.FileData)
                 {
@@ -46,7 +46,7 @@ namespace WebApplication13.Controllers
 
                     // remove double quotes from string.
                     name = name.Trim('"');
-                    name = type + numberOfModels.num+ name;
+                    name = type + globalsModels.num+ name;
                     var localFileName = file.LocalFileName;
                     var filePath = Path.Combine(root, name);
 
