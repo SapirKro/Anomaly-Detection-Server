@@ -17,10 +17,15 @@ namespace WebApplication13.Controllers
     {
         private static List<String> mydocfiles = new List<string>();
 
+        /// <summary>
+        /// fucntions to upload csv files thought post method
+        /// </summary>
+        /// <returns></returns>
         [HttpPost]
         [Route("api/FileUploading/UploadFile/Hybrid")]
         public async Task<string> UploadFileHybrid()
         {
+           
             var type= "Hybrid";
             var ctx = HttpContext.Current;
             var root = ctx.Server.MapPath("~/App_Data");
@@ -31,6 +36,7 @@ namespace WebApplication13.Controllers
             {
                 await Request.Content
                     .ReadAsMultipartAsync(provider);
+                numberOfModels.num++;
 
                 foreach (var file in provider.FileData)
                 {
@@ -40,7 +46,7 @@ namespace WebApplication13.Controllers
 
                     // remove double quotes from string.
                     name = name.Trim('"');
-                    name = type + name;
+                    name = type + numberOfModels.num+ name;
                     var localFileName = file.LocalFileName;
                     var filePath = Path.Combine(root, name);
 
@@ -48,6 +54,7 @@ namespace WebApplication13.Controllers
                     mydocfiles.Add(filePath);
 
                 }
+
             }
             catch (Exception e)
             {

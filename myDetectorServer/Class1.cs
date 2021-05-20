@@ -19,7 +19,7 @@ using System.Text.Json.Serialization;
 using System.IO;
 
 
-namespace WebApplication13.DetectorServer
+namespace WebApplication13.myDetectorServer
 {
 	public class Line
 	{
@@ -604,13 +604,16 @@ namespace WebApplication13.DetectorServer
 	{
 		private TimeSeriesAnomalyDetector detector;
 		private TimeSeries train;
-		private TimeSeries test;
+        private TimeSeries test;
+        private string pathToSave;
+		private int modelNumber;
 		private List<AnomalyReport> reports;
 
-		public DetectorServer(string csvTrain, string csvTest, string type)
+		public DetectorServer(string csvTrain, string csvTest, string type,string path)
 		{
 			this.train = new TimeSeries(csvTrain);
-			this.test = new TimeSeries(csvTest);
+            this.test = new TimeSeries(csvTest);
+			this.pathToSave = path;
 			if (type.Equals("simple"))
 			{
 				this.detector = new SimpleAnomalyDetector();
@@ -626,7 +629,8 @@ namespace WebApplication13.DetectorServer
 		public void Serialize()
 		{
 			string json = JsonSerializer.Serialize(this.reports);
-			File.WriteAllText(@"jsonFile.json", json);
+			string path =this.pathToSave;
+			File.WriteAllText(path, json);
 
 
 		}
@@ -645,9 +649,9 @@ namespace WebApplication13.DetectorServer
 	{
 		static void Main(string[] args)
 		{
-			if (args.Length == 3)
+			if (args.Length == 4)
 			{
-				DetectorServer server = new DetectorServer(args[0], args[1], args[2]);
+				DetectorServer server = new DetectorServer(args[0], args[1], args[2], args[3]);
 				server.Serialize();
 				Console.WriteLine("done");
 			}

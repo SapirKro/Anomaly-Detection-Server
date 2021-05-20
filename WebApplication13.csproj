@@ -190,7 +190,7 @@
     <Compile Include="Controllers\FileUploadingController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ModelsController.cs" />
-    <Compile Include="DetectorServer\Class1.cs" />
+    <Compile Include="myDetectorServer\Class1.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
