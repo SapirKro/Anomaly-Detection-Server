@@ -19,10 +19,11 @@ namespace WebApplication13.Controllers
     /// </summary>
     public struct globalsModels
     {
-        public static int num;
-        public static ModelsManager allmodels = new ModelsManager();
 
-    }
+		public static ModelsManager allmodels = new ModelsManager();
+		public static int num= allmodels.GetAllModels().Count();
+
+	}
   
     public class DocFileController : ApiController
     {
@@ -100,40 +101,48 @@ namespace WebApplication13.Controllers
                     response1.Headers.Location = new Uri("http://localhost:9876/");
                     return response1;
                 }
-                ///////>>>>>>>>if loop ^^^^^^^^^^ to only for testing .delete later<<<<<<<<<
-                ///
-                foreach (string file in httpRequest.Files)
+				///////>>>>>>>>if loop ^^^^^^^^^^ to only for testing .delete later<<<<<<<<<
+				///
+				String trainFilePath="NULL";
+				String testFilePath = "NULL";
+				foreach (string file in httpRequest.Files)
                 {
                    
                     var postedFile = httpRequest.Files[file];
 
                     name = postedFile.FileName;
-                    if (file == trainFileString)
+					
+					if (file.Contains(trainFileString))
                     {
                         name =trainFileString + AlgoType + globalsModels.num + name;
-                       
-                    }
-                    if (file == testFileDString)
+						var filePath = HttpContext.Current.Server.MapPath("~/App_Data/" + name);
+						trainFilePath = filePath;
+						postedFile.SaveAs(filePath);
+						mydocfiles.Add(filePath);
+
+					}
+                    if (file.Contains(testFileDString))
                     {
                         name = testFileDString + AlgoType + globalsModels.num+ name;
+						var filePath = HttpContext.Current.Server.MapPath("~/App_Data/" + name);
+						testFilePath = filePath;
+						postedFile.SaveAs(filePath);
+						mydocfiles.Add(filePath);
 
-                    }
-                    var filePath = HttpContext.Current.Server.MapPath("~/App_Data/" + name);
-                        postedFile.SaveAs(filePath);
-                        mydocfiles.Add(filePath);
+					}
+                 
                 }
                 ////sending the files to the server
                 string jsonName = "Model_" + globalsModels.num + ".json";
                 var serverUploadPath = HttpContext.Current.Server.MapPath("~/App_Data/"+ jsonName);
-                String trainFilePath = mydocfiles[0];
-                String testFilePath = mydocfiles[1];
+       
                 AlgoType = AlgoType.ToLower();
-            
-                server = new DetectorServer(trainFilePath, testFilePath, AlgoType, serverUploadPath);
-             server.Serialize();
-                Console.WriteLine("done");
-              LoadJson(serverUploadPath);
-
+				
+					server = new DetectorServer(trainFilePath, testFilePath, AlgoType, serverUploadPath);
+					server.Serialize();
+					Console.WriteLine("done");
+					LoadJson(serverUploadPath);
+				
                 result = Request.CreateResponse(HttpStatusCode.Created, mydocfiles);
                 ///redirecting back to the homepage
                 var response = Request.CreateResponse(HttpStatusCode.Moved);

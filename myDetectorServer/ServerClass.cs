@@ -606,7 +606,7 @@ namespace WebApplication13.myDetectorServer
 		private TimeSeries train;
         private TimeSeries test;
         private string pathToSave;
-		private int modelNumber;
+	
 		private List<AnomalyReport> reports;
 
 		public DetectorServer(string csvTrain, string csvTest, string type,string path)
@@ -614,7 +614,7 @@ namespace WebApplication13.myDetectorServer
 			this.train = new TimeSeries(csvTrain);
             this.test = new TimeSeries(csvTest);
 			this.pathToSave = path;
-			if (type.Equals("simple"))
+			if (type.Equals("regression"))
 			{
 				this.detector = new SimpleAnomalyDetector();
 			}
