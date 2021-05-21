@@ -42,13 +42,6 @@
       <FileName>Global.asax.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="WebApplication13.Controllers.DefaultController" Collapsed="true">
-    <Position X="5.5" Y="1.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAABAAAAAAAAAAAAAAEAAEACAAEAAAAAAAA=</HashCode>
-      <FileName>Controllers\DefaultController.cs</FileName>
-    </TypeIdentifier>
-  </Class>
   <Class Name="WebApplication13.Controllers.DocFileController" Collapsed="true">
     <Position X="10.75" Y="1.5" Width="1.5" />
     <TypeIdentifier>
@@ -66,21 +59,14 @@
   <Class Name="WebApplication13.Controllers.HomeController" Collapsed="true">
     <Position X="7.25" Y="2.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAEACAAAAAAAAAAAAAAAAAEAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAEAAAAAAAA=</HashCode>
       <FileName>Controllers\HomeController.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="WebApplication13.Controllers.TrainData" Collapsed="true">
-    <Position X="9" Y="4.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAA=</HashCode>
-      <FileName>Controllers\ModelsController.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="WebApplication13.Controllers.ModelsController" Collapsed="true">
     <Position X="5.5" Y="3.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAABAAAAAAAAAQAEAAAAEIABAAAAAAAg=</HashCode>
+      <HashCode>AAAAAAAAAAAAAABAAAAAAAAAQAEAAAAAIABAAAAAAAg=</HashCode>
       <FileName>Controllers\ModelsController.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -103,91 +89,91 @@
     <Position X="9" Y="2.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwAQAAAAAAAAA=</HashCode>
-      <FileName>myDetectorServer\Class1.cs</FileName>
+      <FileName>myDetectorServer\ServerClass.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="WebApplication13.myDetectorServer.Point" Collapsed="true">
     <Position X="10.75" Y="3.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABgAAAAAAA=</HashCode>
-      <FileName>myDetectorServer\Class1.cs</FileName>
+      <FileName>myDetectorServer\ServerClass.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="WebApplication13.myDetectorServer.Circle" Collapsed="true">
     <Position X="9" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAgAAAAACAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>myDetectorServer\Class1.cs</FileName>
+      <FileName>myDetectorServer\ServerClass.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="WebApplication13.myDetectorServer.DetectionUtil" Collapsed="true">
     <Position X="7.25" Y="1.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAACAAQCAAAAAAAAAAAEAAAAAAIAAIAAAAAA=</HashCode>
-      <FileName>myDetectorServer\Class1.cs</FileName>
+      <FileName>myDetectorServer\ServerClass.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="WebApplication13.myDetectorServer.AnomalyReport" Collapsed="true">
     <Position X="5.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAEAAAAAA=</HashCode>
-      <FileName>myDetectorServer\Class1.cs</FileName>
+      <FileName>myDetectorServer\ServerClass.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="WebApplication13.myDetectorServer.TimeSeriesAnomalyDetector" Collapsed="true">
     <Position X="3" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAg=</HashCode>
-      <FileName>myDetectorServer\Class1.cs</FileName>
+      <FileName>myDetectorServer\ServerClass.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="WebApplication13.myDetectorServer.TimeSeries" Collapsed="true">
     <Position X="7.25" Y="4.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAQAAAAIQAAQAAAAACAAAAAAAAAAAAAgAAEAAgAAAAA=</HashCode>
-      <FileName>myDetectorServer\Class1.cs</FileName>
+      <FileName>myDetectorServer\ServerClass.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="WebApplication13.myDetectorServer.CorrelatedFeatures" Collapsed="true">
     <Position X="12.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAgAAAAAAAQAAAAAgAAACgAAAAAAACAAAAAAAAAAAAA=</HashCode>
-      <FileName>myDetectorServer\Class1.cs</FileName>
+      <FileName>myDetectorServer\ServerClass.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="WebApplication13.myDetectorServer.SimpleAnomalyDetector" Collapsed="true">
     <Position X="3" Y="1.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAKAAAACAAAAAIAAAABQAAAAAAAAIIAAg=</HashCode>
-      <FileName>myDetectorServer\Class1.cs</FileName>
+      <FileName>myDetectorServer\ServerClass.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="WebApplication13.myDetectorServer.MinCircleUtil" Collapsed="true">
     <Position X="10.75" Y="2.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AABAAAAAAAAAAAAACAAAABAAAAAAAABAAAAAAAAAAAA=</HashCode>
-      <FileName>myDetectorServer\Class1.cs</FileName>
+      <FileName>myDetectorServer\ServerClass.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="WebApplication13.myDetectorServer.HybridAnomalyDetector" Collapsed="true">
     <Position X="3" Y="3.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAEAAAAAAAIAAAAAAAAAAAAAAABAAAAAAAAAIAAAg=</HashCode>
-      <FileName>myDetectorServer\Class1.cs</FileName>
+      <FileName>myDetectorServer\ServerClass.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="WebApplication13.myDetectorServer.DetectorServer" Collapsed="true">
     <Position X="9" Y="1.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>QYAAAAAAIAAAAAAAAQAAAAAAACAAAAAIAAAAACAAAAA=</HashCode>
-      <FileName>myDetectorServer\Class1.cs</FileName>
+      <FileName>myDetectorServer\ServerClass.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="WebApplication13.myDetectorServer.Program" Collapsed="true">
     <Position X="12.5" Y="3.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
-      <FileName>myDetectorServer\Class1.cs</FileName>
+      <FileName>myDetectorServer\ServerClass.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Struct Name="WebApplication13.Controllers.globalsModels" Collapsed="true">

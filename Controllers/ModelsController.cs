@@ -9,16 +9,7 @@ using WebApplication13.Models;
 
 namespace WebApplication13.Controllers
 {
-    public class TrainData
-    {
-        public int x;
-
-        public TrainData(int x)
-        {
-            this.x = x;
-
-        }
-    }
+   
     public class ModelsController : ApiController
     {
         private IModelsManager productsManager = new ModelsManager();
@@ -44,15 +35,7 @@ namespace WebApplication13.Controllers
             return p;
         }
 
-        // POST: api/Models
-        [HttpPost]
-        public void TrainData(/*String t,*/TrainData t)
-        {
-            /// productsManager.AddModel(p);
-
-            return;
-        }
-
+      
 
         // PUT: api/Models/5
         public void Put(int id, [FromBody] string value)
