@@ -19,12 +19,12 @@ namespace WebApplication13.Controllers
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
+            ViewBag.Message = "The app made by:Sapir Kroitoro ,Omer Mazal,Amichai Vollin,Ben Rotlevi.";
 
             return View();
         }
 
-        public ActionResult Contact()
+       /* public ActionResult Contact()
         {
             ViewBag.Message1 = "Your contact page.1";
             
@@ -32,6 +32,6 @@ namespace WebApplication13.Controllers
             int num = e1.mymain();
             ViewBag.Message2 = num;
             return View();
-        }
+        }*/
     }
 }
