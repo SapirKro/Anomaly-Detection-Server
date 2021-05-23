@@ -19,7 +19,7 @@ using System.Text.Json.Serialization;
 using System.IO;
 
 
-namespace WebApplication13.myDetectorServer
+namespace WebApp.myDetectorServer
 {
 	public class Line
 	{

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web.Http;
 
 using System.Net.Http.Headers;
-namespace WebApplication13
+namespace WebApp
 {
     public static class WebApiConfig
     {

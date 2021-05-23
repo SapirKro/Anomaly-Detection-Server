@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WebApplication13.Models
+namespace WebApp.Models
 {
     interface IModelsManager
     {

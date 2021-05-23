@@ -10,7 +10,7 @@ using System.Web;
 using System.Web.Http;
 
 
-namespace WebApplication13.Controllers
+namespace WebApp.Controllers
 {
 
     public class FileUploadingController : ApiController
@@ -111,7 +111,7 @@ namespace WebApplication13.Controllers
             var root = ctx.Server.MapPath("~/App_Data");
             
           
-           //// var root ="C:\\Users\\speed\\source\\repos\\WebApplication13\\App_Data" ;
+           //// var root ="C:\\Users\\speed\\source\\repos\\WebApp\\App_Data" ;
             String[] files =
        Directory.GetFiles(root, "*", SearchOption.AllDirectories);
             int size = files.Length;

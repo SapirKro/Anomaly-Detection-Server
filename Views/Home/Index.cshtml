@@ -68,26 +68,26 @@
             border: 3px solid #73AD21;
         }
 
-        #customers {
+        #anomalies {
             font-family: Arial, Helvetica, sans-serif;
             border-collapse: collapse;
             width: 70%;
         }
 
-            #customers td, #customers th {
+            #anomalies td, #anomalies th {
                 border: 1px solid #ddd;
                 padding: 8px;
             }
 
-            #customers tr:nth-child(even) {
+            #anomalies tr:nth-child(even) {
                 background-color: #f2f2f2;
             }
 
-            #customers tr:hover {
+            #anomalies tr:hover {
                 background-color: #ddd;
             }
 
-            #customers th {
+            #anomalies th {
                 padding-top: 12px;
                 padding-bottom: 12px;
                 text-align: left;
@@ -135,7 +135,7 @@
     <!--
     <div class="table">
         <h2>Models Table</h2>
-        <table id="customers">
+        <table id="anomalies">
             <tr>
                 <th>Id</th>
                 <th>Description</th>
@@ -156,7 +156,7 @@
 
                 data.forEach(function (product) {
 
-                    $("#customers").append("<tr><td>" + product.Id + "</td>" +
+                    $("#anomalies").append("<tr><td>" + product.Id + "</td>" +
                         "<td>" + product.Description + "</td>" +
                         "<td>" + product.Time + "</td></tr>"
 
@@ -289,18 +289,18 @@
                     console.log("num " + num);
 
 
-                    $("#customers").html("");
+                    $("#anomalies").html("");
 
 
                     /// + product.UploadTime + "</td>" +
                     ////  "<td>" + product.Status
-                    $("#customers").append("  <tr>   <th>Id</th>                <th>Description</th>                <th>Time</th></tr >");
+                    $("#anomalies").append("  <tr>   <th>Id</th>                <th>Description</th>                <th>Time</th></tr >");
 
-                    $("#customers").append("<tr><td>" + arrItems[0].Id + "</td>" +
+                    $("#anomalies").append("<tr><td>" + arrItems[0].Id + "</td>" +
                         "<td>" + arrItems[0].Description + "</td>" +
                         "<td>" + arrItems[0].Time + "</td></tr>");
                     /*
-                     $("#customers").append("<tr><td>" + 5 + "</td>" +
+                     $("#anomalies").append("<tr><td>" + 5 + "</td>" +
                          "<td>" + 3 + "</td>" +
                          "<td>" + 4 + "</td>" +
                          "<td>" + 0 + "</td>" +
@@ -351,7 +351,7 @@
 
     <div class="table">
         <h2>Models Table</h2>
-        <table id="customers">
+        <table id="anomalies">
             <tr>
                 <th>Id</th>
                 <th>Description</th>
@@ -372,7 +372,7 @@
 
                 data.forEach(function (product) {
 
-                    $("#customers").append("<tr><td>" + product.Id + "</td>" +
+                    $("#anomalies").append("<tr><td>" + product.Id + "</td>" +
                         "<td>" + product.Description + "</td>" +
                         "<td>" + product.Time + "</td></tr>"
 
@@ -436,8 +436,8 @@
                 <!--
                 <input type="submit" value="Upload" />-->
             </div>
-            <label for="cars">Choose algorithm:</label>
-            <select name="cars" id="cars">
+            <label for="AlgorithemType">Choose algorithm:</label>
+            <select name="AlgorithemType" id="AlgorithemType">
                 <option value="Hybrid">Hybrid</option>
                 <option value="Regression">Regression</option>
             </select>
@@ -448,8 +448,8 @@
         <br><br>
         <!--
         <form action="/action_page.php">
-            <label for="cars">Choose algorithm:</label>
-            <select name="cars" id="cars">
+            <label for="AlgorithemType">Choose algorithm:</label>
+            <select name="AlgorithemType" id="AlgorithemType">
                 <option value="volvo">hybrid</option>
                 <option value="saab">regression</option>
             </select>

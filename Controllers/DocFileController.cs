@@ -3,15 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using WebApplication13.myDetectorServer;
+using WebApp.myDetectorServer;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using WebApplication13.Models;
+using WebApp.Models;
 using System.IO;
 using Newtonsoft.Json;
 
-namespace WebApplication13.Controllers
+namespace WebApp.Controllers
 {
 
     /// <summary>
@@ -88,20 +88,26 @@ namespace WebApplication13.Controllers
                 string trainFileString = "trainFile";
                 string testFileDString = "testFile";
                 string name;
-                string AlgoType = HttpContext.Current.Request.Form["cars"];
+                string AlgoType = HttpContext.Current.Request.Form["AlgorithemType"];
                 globalsModels.num++;
-               
-                ///////>>>>>>>>if loop to only for testing .delete later<<<<<<<<<
+            
+             
                 /////if submit is pressed without any upload file
-                if (httpRequest.Files[0].FileName == "")
+                if (httpRequest.Files[0].FileName == ""|| httpRequest.Files[1].FileName == "")
                 {
-                    var serverUploadPath1 = HttpContext.Current.Server.MapPath("~/App_Data/" + "Model_1.json");
+					HttpResponseMessage response22 =
+	this.Request.CreateErrorResponse(HttpStatusCode.BadRequest, "you forget to upload one of the files");
+					throw new HttpResponseException(response22);
+
+					
+					///////>>>>>>>>only for testing .delete later<<<<<<<<<
+					var serverUploadPath1 = HttpContext.Current.Server.MapPath("~/App_Data/" + "Model_1.json");
                     LoadJson(serverUploadPath1);
                     var response1 = Request.CreateResponse(HttpStatusCode.Moved);
                     response1.Headers.Location = new Uri("http://localhost:9876/");
                     return response1;
                 }
-				///////>>>>>>>>if loop ^^^^^^^^^^ to only for testing .delete later<<<<<<<<<
+				///////>>>>>>>>if loop ^^^^^^^^^^ to only for testing .delete later<<<<<<<<<*/
 				///
 				String trainFilePath="NULL";
 				String testFilePath = "NULL";
