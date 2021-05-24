@@ -24,8 +24,8 @@ namespace WebApp.Controllers
 		/// </summary>
 		/// <returns></returns>
 		[HttpPost]
-        [Route("api/FileUploading/UploadFile/Hybrid")]
-        public async Task<object> UploadFileHybrid()
+        [Route("api/detect")]
+        public async Task<object> UploadFile()
         {
            
            
@@ -111,7 +111,7 @@ namespace WebApp.Controllers
         }
 
 
-
+		/*
         [HttpPost]
         [Route("api/FileUploading/UploadFile/Regression")]
         public async Task<string> UploadFileRegression()
@@ -174,7 +174,7 @@ namespace WebApp.Controllers
             return mydocfiles;
         }
 
-
+		*/
 		public object LoadmyJson(string jsonPath)
 		{
 			string allText = System.IO.File.ReadAllText(jsonPath);
