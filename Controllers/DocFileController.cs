@@ -77,7 +77,7 @@ namespace WebApp.Controllers
         var serverUploadPath1 = HttpContext.Current.Server.MapPath("~/App_Data/" +"Model_1.json");
                 LoadJson(serverUploadPath1);
             var response1 = Request.CreateResponse(HttpStatusCode.Moved);
-            response1.Headers.Location = new Uri("http://localhost:9876/");
+            response1.Headers.Location = new Uri("http://localhost:8080/");
             return response1;*/
 
 
@@ -89,7 +89,7 @@ namespace WebApp.Controllers
                 string testFileDString = "testFile";
                 string name;
                 string AlgoType = HttpContext.Current.Request.Form["AlgorithemType"];
-                globalsModels.num++;
+                
             
              
                 /////if submit is pressed without any upload file
@@ -104,9 +104,10 @@ namespace WebApp.Controllers
 					var serverUploadPath1 = HttpContext.Current.Server.MapPath("~/App_Data/" + "Model_1.json");
                     LoadJson(serverUploadPath1);
                     var response1 = Request.CreateResponse(HttpStatusCode.Moved);
-                    response1.Headers.Location = new Uri("http://localhost:9876/");
+                    response1.Headers.Location = new Uri("http://localhost:8080/");
                     return response1;
                 }
+				globalsModels.num++;
 				///////>>>>>>>>if loop ^^^^^^^^^^ to only for testing .delete later<<<<<<<<<*/
 				///
 				String trainFilePath="NULL";
@@ -152,7 +153,7 @@ namespace WebApp.Controllers
                 result = Request.CreateResponse(HttpStatusCode.Created, mydocfiles);
                 ///redirecting back to the homepage
                 var response = Request.CreateResponse(HttpStatusCode.Moved);
-                response.Headers.Location = new Uri("http://localhost:9876/");
+                response.Headers.Location = new Uri("http://localhost:8080/");
                 return response;
             }
             else
