@@ -19,10 +19,9 @@ namespace WebApp.Controllers
     {
         private static List<String> mydocfiles = new List<string>();
 		private static DetectorServer server;
-		/// <summary>
+
 		/// fucntions to upload csv files thought post method
-		/// </summary>
-		/// <returns></returns>
+	
 		[HttpPost]
         [Route("api/detect")]
         public async Task<object> UploadFile()
@@ -39,6 +38,8 @@ namespace WebApp.Controllers
 			String testFilePath = "NULL";
 			////string AlgoType11 = HttpContext.Current.Request["type"];
 			string AlgoType12 = HttpContext.Current.Request.QueryString["type"];
+			string temppp = provider.FormData.ToString().Trim('=').ToLower();
+			int index = 0; 
 			try
             {
                 await Request.Content
@@ -54,10 +55,15 @@ namespace WebApp.Controllers
 					return $"Error not CSV file";
 
 				}*/
-				
+
 				
 				foreach (var file in provider.FileData)
                 {
+					index++;
+					if (index > 2)
+					{
+						break;
+					}
                     var name = file.Headers
                         .ContentDisposition
                         .FileName;
@@ -72,8 +78,12 @@ namespace WebApp.Controllers
 					
 					var localFileName = file.LocalFileName;
                     var filePath = Path.Combine(root, name);
-
-                    File.Move(localFileName, filePath);
+					if (File.Exists(filePath))
+					{
+						File.Delete(filePath);
+					}
+					////File.Move(@"c:\test\SomeFile.txt", @"c:\test\Test\SomeFile.txt");
+					File.Move(localFileName, filePath);
 					if (name.Contains(trainFileString))
 					{
 						trainFilePath = filePath;
@@ -97,16 +107,23 @@ namespace WebApp.Controllers
 
 			string jsonName = "Model_" + globalsModels.num + ".json";
 			var serverUploadPath = HttpContext.Current.Server.MapPath("~/App_Data/" + jsonName);
+			string AlgoType;
+			if (AlgoType12 != null)
+			{
+				AlgoType = AlgoType12.ToLower();
+			}
+			else
+			{
+				AlgoType= temppp;
+			}
 
-			string  AlgoType = AlgoType12.ToLower();
-			
 			server = new DetectorServer(trainFilePath, testFilePath, AlgoType, serverUploadPath);
 			server.Serialize();
+			Console.WriteLine(index);
 			Console.WriteLine("done");
 			object jsonObject=LoadmyJson(serverUploadPath);
 
 		
-			
 			return jsonObject;
         }
 
@@ -180,6 +197,24 @@ namespace WebApp.Controllers
 			string allText = System.IO.File.ReadAllText(jsonPath);
 
 			object jsonObject = JsonConvert.DeserializeObject(allText);
+			
+			List<DocFileController.AnomalyObject> all = new List<DocFileController.AnomalyObject>();
+			using (StreamReader sr = File.OpenText(jsonPath))
+			{
+				all = JsonConvert.DeserializeObject<List<DocFileController.AnomalyObject>>(sr.ReadToEnd());
+
+
+			}
+			for (int i = 0; i < all.Count(); i++)
+			{
+				string des = all[i].description;
+				string time = all[i].timeStep;
+				int modelid = globalsModels.num;
+				Model a = new Model { Id = modelid, Description = des, Time = time, };
+
+				globalsModels.allmodels.AddModel(a);
+			}
+			Console.WriteLine("done");
 			return jsonObject;
 			
 		}

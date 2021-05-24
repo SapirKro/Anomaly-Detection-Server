@@ -72,9 +72,8 @@ namespace WebApp.Controllers
             
             HttpResponseMessage result = null;
             var httpRequest = HttpContext.Current.Request;
-
-
-            /*
+			int index = 0;
+			/*
         var serverUploadPath1 = HttpContext.Current.Server.MapPath("~/App_Data/" +"Model_1.json");
                 LoadJson(serverUploadPath1);
             var response1 = Request.CreateResponse(HttpStatusCode.Moved);
@@ -82,8 +81,8 @@ namespace WebApp.Controllers
             return response1;*/
 
 
-            ///upload the files
-            if (httpRequest.Files.Count > 0)
+			///upload the files
+			if (httpRequest.Files.Count > 0)
             {
                 System.Console.WriteLine("You received the call!");
                 string trainFileString = "trainFile";
@@ -115,8 +114,20 @@ namespace WebApp.Controllers
 				String testFilePath = "NULL";
 				foreach (string file in httpRequest.Files)
                 {
-                   
-                    var postedFile = httpRequest.Files[file];
+					index++;
+					if (index > 2)
+					{
+						break;
+					}
+					if (file.Contains(".csv") == false)
+					{
+						HttpResponseMessage response22 =
+this.Request.CreateErrorResponse(HttpStatusCode.BadRequest, "one of the file isnt CSV file");
+						throw new HttpResponseException(response22);
+
+					}
+
+					var postedFile = httpRequest.Files[file];
 
                     name = postedFile.FileName;
 					
