@@ -28,7 +28,7 @@ namespace WebApp.Controllers
         public async Task<object> UploadFileHybrid()
         {
            
-            var type= "Hybrid";
+           
             var ctx = HttpContext.Current;
             var root = ctx.Server.MapPath("~/App_Data");
             var provider =
@@ -37,6 +37,8 @@ namespace WebApp.Controllers
 			string testFileDString = "testFile";
 			String trainFilePath = "NULL";
 			String testFilePath = "NULL";
+			////string AlgoType11 = HttpContext.Current.Request["type"];
+			string AlgoType12 = HttpContext.Current.Request.QueryString["type"];
 			try
             {
                 await Request.Content
@@ -52,8 +54,8 @@ namespace WebApp.Controllers
 					return $"Error not CSV file";
 
 				}*/
-				string tt=provider.FormData.ToString();
-				tt = tt.Trim('=').ToLower();
+				
+				
 				foreach (var file in provider.FileData)
                 {
                     var name = file.Headers
@@ -66,7 +68,7 @@ namespace WebApp.Controllers
 					}
 					// remove double quotes from string.
 					name = name.Trim('"');
-                    name = type + globalsModels.num+ name;
+                    name = AlgoType12 + globalsModels.num+ name;
 					
 					var localFileName = file.LocalFileName;
                     var filePath = Path.Combine(root, name);
@@ -96,7 +98,7 @@ namespace WebApp.Controllers
 			string jsonName = "Model_" + globalsModels.num + ".json";
 			var serverUploadPath = HttpContext.Current.Server.MapPath("~/App_Data/" + jsonName);
 
-			string  AlgoType = type.ToLower();
+			string  AlgoType = AlgoType12.ToLower();
 			
 			server = new DetectorServer(trainFilePath, testFilePath, AlgoType, serverUploadPath);
 			server.Serialize();
