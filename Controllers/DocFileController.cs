@@ -107,7 +107,7 @@ namespace WebApp.Controllers
                     response1.Headers.Location = new Uri("http://localhost:8080/");
                     return response1;
                 }
-				globalsModels.num++;
+				
 				///////>>>>>>>>if loop ^^^^^^^^^^ to only for testing .delete later<<<<<<<<<*/
 				///
 				String trainFilePath="NULL";
@@ -119,20 +119,22 @@ namespace WebApp.Controllers
 					{
 						break;
 					}
-					if (file.Contains(".csv") == false)
+				
+
+					var postedFile = httpRequest.Files[file];
+
+                    name = postedFile.FileName;
+					if (name.Contains(".csv") == false)
 					{
 						HttpResponseMessage response22 =
 this.Request.CreateErrorResponse(HttpStatusCode.BadRequest, "one of the file isnt CSV file");
 						throw new HttpResponseException(response22);
 
 					}
-
-					var postedFile = httpRequest.Files[file];
-
-                    name = postedFile.FileName;
-					
+					globalsModels.num++;
 					if (file.Contains(trainFileString))
                     {
+
                         name =trainFileString + AlgoType + globalsModels.num + name;
 						var filePath = HttpContext.Current.Server.MapPath("~/App_Data/" + name);
 						trainFilePath = filePath;
@@ -167,8 +169,8 @@ this.Request.CreateErrorResponse(HttpStatusCode.BadRequest, "one of the file isn
                 ///redirecting back to the homepage
                 var response = Request.CreateResponse(HttpStatusCode.Moved);
                 response.Headers.Location = new Uri("http://localhost:8080/");
-                return response;
-            }
+				return response;
+			}
             else
             {
                 result = Request.CreateResponse(HttpStatusCode.BadRequest);
