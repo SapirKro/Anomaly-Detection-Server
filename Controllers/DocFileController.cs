@@ -24,8 +24,9 @@ namespace WebApp.Controllers
 		public static int num= allmodels.GetAllModels().Count();
 
 	}
-  
-    public class DocFileController : ApiController
+	
+
+	public class DocFileController : ApiController
     {
         private List<String> mydocfiles = new List<string>();
          DetectorServer server;
@@ -128,6 +129,7 @@ namespace WebApp.Controllers
 						mydocfiles.Add(filePath);
 
 					}
+
                     if (file.Contains(testFileDString))
                     {
                         name = testFileDString + AlgoType + globalsModels.num+ name;
