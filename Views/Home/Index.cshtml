@@ -3,6 +3,49 @@
 <html>
 
 <head>
+    <script>
+        function myTimer() {
+            console.log(' each 1 second...');
+        }
+        var prevdataL = 2;
+        function sub() {
+
+            console.log("sapir");
+            var productsUrl = "../api/models";
+            $.getJSON(productsUrl, function (data) {
+                var newL = data.length;
+                console.log("prev data size:");
+                console.log(prevdataL);
+                console.log("new data size:");
+                console.log(newL);
+                if (prevdataL < newL) {
+                $("#anomalies").html("");
+                $("#anomalies").append("  <tr>   <th>Id</th>                <th>Description</th>                <th>Time</th></tr >");
+                data.forEach(function (product) {
+
+                    $("#anomalies").append("<tr><td>" + product.Id + "</td>" +
+                        "<td>" + product.Description + "</td>" +
+                        "<td>" + product.Time + "</td></tr>");
+
+                    // end function (product)
+                });
+
+                prevdataL = newL;
+                console.log("now prev new data size");
+                console.log(prevdataL);
+                ///end if
+                ////console.log(prevdataL);
+
+                ///end if
+               };
+                // end function (data)
+            });
+            // end sub
+        };
+
+        var myVar = setInterval(sub, 1000);
+      
+    </script>
     <title>HomePage</title>
     <meta charset="utf-8" />
     <!--
@@ -50,6 +93,7 @@
 
 
     <style>
+
         .container {
             position: relative;
         }
@@ -276,7 +320,7 @@
                 $.getJSON(productsUrl, function (data) {
                     console.log(data);
                     console.log(data.length);
-                    
+
                     var arrItems = [];      // THE ARRAY TO STORE JSON ITEMS.
                     $.each(data, function (index, value) {
                         console.log(value.Id);
@@ -315,7 +359,7 @@
         <script>
             var productsUrl = "../api/models";
             $.getJSON(productsUrl, function (data) {
-               
+
                 data.forEach(function (product) {
                     $("#myUL").append("<li><a onclick=" + clicka(event) + " href=#>" + "Model_" + product.Id + "</a> </li>"
                     );
@@ -377,11 +421,10 @@
 
                     $("#anomalies").append("<tr><td>" + product.Id + "</td>" +
                         "<td>" + product.Description + "</td>" +
-                        "<td>" + product.Time + "</td></tr>"
-
-                    );
+                        "<td>" + product.Time + "</td></tr>"    );
 
                 });
+               
             });
         </script>
     </div>
@@ -404,23 +447,28 @@
     <div>
 
         <!--
-        <p>Click on the "Choose File" button to upload: </p>
+    <p>Click on the "Choose File" button to upload: </p>
 
 
-        <p>
-            CSV file:
-        </p>
-        <form name="form1" method="post" action="../api/docfile" enctype="multipart/form-data">
-            <div>
-                <input name="csv" accept=".csv" type="file" />
-            </div>
-            <div>
-                <input type="submit" value="Upload" />
-            </div>
-        </form>
-        <p>
-            train file:
-        </p>-->
+    <p>
+        CSV file:
+    </p>
+    <form name="form1" method="post" action="../api/docfile" enctype="multipart/form-data">
+        <div>
+            <input name="csv" accept=".csv" type="file" />
+        </div>
+        <div>
+            <input type="submit" value="Upload" />
+        </div>
+    </form>
+    <p>
+        train file:
+          <script>
+        function sub() {
+
+    </p>-->
+
+
         <form name="form1" method="post" action="../api/docfile" enctype="multipart/form-data">
             <p>
                 train file:
@@ -437,7 +485,7 @@
             </div>
             <div>
                 <!--
-                <input type="submit" value="Upload" />-->
+            <input type="submit" value="Upload" />-->
             </div>
             <label for="AlgorithemType">Choose algorithm:</label>
             <select name="AlgorithemType" id="AlgorithemType">
@@ -445,20 +493,61 @@
                 <option value="Regression">Regression</option>
             </select>
             <br><br>
-            <input type="submit" value="Submit">
+            <input type="submit" value="Submit" onclick="sub()">
         </form>
+
+        <script >
+            var prevdataL = 2;
+            function sub() {
+
+                console.log("sapir");
+                var productsUrl = "../api/models";
+                $.getJSON(productsUrl, function (data) {
+                    var newL = data.length;
+                    console.log("prev data size:");
+                    console.log(prevdataL);
+                    console.log("new data size:" );
+                    console.log(newL);
+                   //// if (prevdataL < newL) {
+                        $("#anomalies").html("");
+                        $("#anomalies").append("  <tr>   <th>Id</th>                <th>Description</th>                <th>Time</th></tr >");
+                        data.forEach(function (product) {
+
+                            $("#anomalies").append("<tr><td>" + product.Id + "</td>" +
+                                "<td>" + product.Description + "</td>" +
+                                "<td>" + product.Time + "</td></tr>");
+
+                            // end function (product)
+                        });
+
+                        prevdataL = newL;
+                        console.log("now prev new data size");
+                        console.log(prevdataL);
+        ///end if
+                        console.log(prevdataL);
+
+                        ///end if
+                 ///  };
+                    // end function (data)
+                });
+  // end sub
+            };
+                    
+                    //    document.getElementById('click').onclick = clicka(event);
+        </script>
+
 
         <br><br>
         <!--
-        <form action="/action_page.php">
-            <label for="AlgorithemType">Choose algorithm:</label>
-            <select name="AlgorithemType" id="AlgorithemType">
-                <option value="volvo">hybrid</option>
-                <option value="saab">regression</option>
-            </select>
-            <br><br>
-            <input type="submit" value="Submit">
-        </form>-->
+    <form action="/action_page.php">
+        <label for="AlgorithemType">Choose algorithm:</label>
+        <select name="AlgorithemType" id="AlgorithemType">
+            <option value="volvo">hybrid</option>
+            <option value="saab">regression</option>
+        </select>
+        <br><br>
+        <input type="submit" value="Submit">
+    </form>-->
 
 
 
@@ -466,7 +555,7 @@
     </div>
 
     <!--
-
+       
     <br />
     <script>
         var r = {
@@ -524,7 +613,7 @@
         -->
     <div>
 
-     
+
         <div>
             <iframe src="http://localhost:8080/Home/About1" width="500" height="500"></iframe>
         </div>

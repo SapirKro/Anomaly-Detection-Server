@@ -67,7 +67,7 @@ namespace WebApp.Controllers
         ///the folder "App_Data" in the project location.
         ////the full path for the files saved in mydocfiles
 
-        public HttpResponseMessage Post()
+        public void Post()
         {
             
             HttpResponseMessage result = null;
@@ -105,13 +105,14 @@ namespace WebApp.Controllers
                     LoadJson(serverUploadPath1);
                     var response1 = Request.CreateResponse(HttpStatusCode.Moved);
                     response1.Headers.Location = new Uri("http://localhost:8080/");
-                    return response1;
+					return; 
                 }
 				
 				///////>>>>>>>>if loop ^^^^^^^^^^ to only for testing .delete later<<<<<<<<<*/
 				///
 				String trainFilePath="NULL";
 				String testFilePath = "NULL";
+				
 				foreach (string file in httpRequest.Files)
                 {
 					index++;
@@ -126,16 +127,18 @@ namespace WebApp.Controllers
                     name = postedFile.FileName;
 					if (name.Contains(".csv") == false)
 					{
+						
 						HttpResponseMessage response22 =
 this.Request.CreateErrorResponse(HttpStatusCode.BadRequest, "one of the file isnt CSV file");
 						throw new HttpResponseException(response22);
+						
 
 					}
-					globalsModels.num++;
+					
 					if (file.Contains(trainFileString))
                     {
 
-                        name =trainFileString + AlgoType + globalsModels.num + name;
+                        name =trainFileString + AlgoType + name;
 						var filePath = HttpContext.Current.Server.MapPath("~/App_Data/" + name);
 						trainFilePath = filePath;
 						postedFile.SaveAs(filePath);
@@ -145,7 +148,7 @@ this.Request.CreateErrorResponse(HttpStatusCode.BadRequest, "one of the file isn
 
                     if (file.Contains(testFileDString))
                     {
-                        name = testFileDString + AlgoType + globalsModels.num+ name;
+                        name = testFileDString + AlgoType + name;
 						var filePath = HttpContext.Current.Server.MapPath("~/App_Data/" + name);
 						testFilePath = filePath;
 						postedFile.SaveAs(filePath);
@@ -154,6 +157,14 @@ this.Request.CreateErrorResponse(HttpStatusCode.BadRequest, "one of the file isn
 					}
                  
                 }
+				if ((testFilePath.Equals("NULL"))==false)
+				{
+					if ((trainFilePath.Equals("NULL")) == false)
+					{
+						globalsModels.num++;
+					}
+
+					}
                 ////sending the files to the server
                 string jsonName = "Model_" + globalsModels.num + ".json";
                 var serverUploadPath = HttpContext.Current.Server.MapPath("~/App_Data/"+ jsonName);
@@ -169,14 +180,16 @@ this.Request.CreateErrorResponse(HttpStatusCode.BadRequest, "one of the file isn
                 ///redirecting back to the homepage
                 var response = Request.CreateResponse(HttpStatusCode.Moved);
                 response.Headers.Location = new Uri("http://localhost:8080/");
-				return response;
+				///return response;
+				return;
 			}
-            else
+			else
             {
                 result = Request.CreateResponse(HttpStatusCode.BadRequest);
             }
-            return result;
-        }
+            ////return result;
+			return;
+		}
 
 
 
