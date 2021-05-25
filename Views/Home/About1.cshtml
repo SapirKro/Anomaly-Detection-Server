@@ -1,0 +1,108 @@
+﻿@{
+       Layout = null;
+}
+
+
+<style>
+    * {
+        color: black !important;
+    }
+    #anomalies {
+        font-family: Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+        width: 70%;
+    }
+
+        #anomalies td, #anomalies th {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+
+        #anomalies tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        #anomalies tr:hover {
+            background-color: #ddd;
+        }
+
+        #anomalies th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: #4CAF50;
+            color: white;
+        }
+
+</style>
+
+<head>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(function(){
+        $("#btn").click(function(){
+        $("#thisdiv").load("../data.txt");
+        });
+
+        });
+
+
+    </script>
+    <script>
+        $(document).ready(function(){
+        $("#btn2").click(function(){
+        $("#thisdiv").load(window.location.href + " #thisdiv" );
+        });
+
+        });
+
+
+    </script>
+
+
+</head>
+
+<div class="table" id="thisdiv">
+    <h2>Anomaly Table</h2>
+    <table id="anomalies">
+        <tr>
+            <th>Id</th>
+            <th>Description</th>
+            <th>Time</th>
+
+
+        </tr>
+    </table>
+
+
+    <!-- <script src="../Scripts/jquery-3.1.1.js"></script> -->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+
+
+    <script>
+ 
+            var productsUrl = "../api/models";
+            $.getJSON(productsUrl, function (data) {
+
+                data.forEach(function (product) {
+
+                    $("#anomalies").append("<tr><td>" + product.Id + "</td>" +
+                        "<td>" + product.Description + "</td>" +
+                        "<td>" + product.Time + "</td></tr>"
+
+                    );
+
+                });
+            });
+      
+    </script>
+</div>
+
+
+<div id="test">
+
+    <p>test1</p>
+
+</div>
+<button id="btn">click me</button>
+<button id="btn2">222</button>
