@@ -254,146 +254,145 @@
             </script>
         </div>
         -->
-
-
-    <div class="modellist">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <style>
-            * {
-                box-sizing: border-box;
-            }
-
-            #myInput {
-                background-image: url('/css/searchicon.png');
-                background-position: 10px 12px;
-                background-repeat: no-repeat;
-                width: 100%;
-                font-size: 12px;
-                padding: 6px 10px 6px 20px;
-                border: 1px solid #ddd;
-                margin-bottom: 12px;
-            }
-
-            #myUL {
-                list-style-type: none;
-                padding: 0;
-                margin: 0;
-                width: 100%;
-            }
-
-                #myUL li a {
-                    border: 1px solid #ddd;
-                    margin-top: -1px; /* Prevent double borders */
-                    background-color: #f6f6f6;
-                    padding: 5px;
-                    text-decoration: none;
-                    font-size: 12px;
-                    color: black;
-                    display: block
+    <!--
+        <div class="modellist">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+            <style>
+                * {
+                    box-sizing: border-box;
                 }
 
-                    #myUL li a:hover:not(.header) {
-                        background-color: #eee;
+                #myInput {
+                    background-image: url('/css/searchicon.png');
+                    background-position: 10px 12px;
+                    background-repeat: no-repeat;
+                    width: 100%;
+                    font-size: 12px;
+                    padding: 6px 10px 6px 20px;
+                    border: 1px solid #ddd;
+                    margin-bottom: 12px;
+                }
+
+                #myUL {
+                    list-style-type: none;
+                    padding: 0;
+                    margin: 0;
+                    width: 100%;
+                }
+
+                    #myUL li a {
+                        border: 1px solid #ddd;
+                        margin-top: -1px; /* Prevent double borders */
+                        background-color: #f6f6f6;
+                        padding: 5px;
+                        text-decoration: none;
+                        font-size: 12px;
+                        color: black;
+                        display: block
                     }
-        </style>
+
+                        #myUL li a:hover:not(.header) {
+                            background-color: #eee;
+                        }
+            </style>
 
 
-        <h3>Models</h3>
+            <h3>Models</h3>
 
-        <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name">
+            <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name">
 
-        <ul id="myUL">
+            <ul id="myUL">
 
-            <li><a href="#" onclick="clicka(event)" id="click">Model_1_chk</a></li>
-            <li><a href="#" onclick="clicka(event)">Model_2_chk_chk_chk_chk</a></li>
+                <li><a href="#" onclick="clicka(event)" id="click">Model_1_chk</a></li>
+                <li><a href="#" onclick="clicka(event)">Model_2_chk_chk_chk_chk</a></li>
 
-        </ul>
-        <script type="text/javascript">
-            function clicka(event) {
-                console.log("eve" + event.target.text);
+            </ul>
+            <script type="text/javascript">
+                function clicka(event) {
+                    console.log("eve" + event.target.text);
 
-                var num = event.target.text.match(/[\d\.]+/g);
-                console.log("num " + num);
-
-
-                var productsUrl = "../api/models";
-                $.getJSON(productsUrl, function (data) {
-                    console.log(data);
-                    console.log(data.length);
-
-                    var arrItems = [];      // THE ARRAY TO STORE JSON ITEMS.
-                    $.each(data, function (index, value) {
-                        console.log(value.Id);
-
-                        if (num == (value.Id)) {
-                            arrItems.push(value);
-                        }// PUSH THE VALUES INSIDE THE ARRAY.
-                    });
-
-                    console.log(arrItems);
-
-
+                    var num = event.target.text.match(/[\d\.]+/g);
                     console.log("num " + num);
 
 
-                    $("#anomalies").html("");
+                    var productsUrl = "../api/models";
+                    $.getJSON(productsUrl, function (data) {
+                        console.log(data);
+                        console.log(data.length);
+
+                        var arrItems = [];      // THE ARRAY TO STORE JSON ITEMS.
+                        $.each(data, function (index, value) {
+                            console.log(value.Id);
+
+                            if (num == (value.Id)) {
+                                arrItems.push(value);
+                            }// PUSH THE VALUES INSIDE THE ARRAY.
+                        });
+
+                        console.log(arrItems);
 
 
-                    /// + product.UploadTime + "</td>" +
-                    ////  "<td>" + product.Status
-                    $("#anomalies").append("  <tr>   <th>Id</th>                <th>Description</th>                <th>Time</th></tr >");
+                        console.log("num " + num);
 
-                    $("#anomalies").append("<tr><td>" + arrItems[0].Id + "</td>" +
-                        "<td>" + arrItems[0].Description + "</td>" +
-                        "<td>" + arrItems[0].Time + "</td></tr>");
-                    /*
-                     $("#anomalies").append("<tr><td>" + 5 + "</td>" +
-                         "<td>" + 3 + "</td>" +
-                         "<td>" + 4 + "</td>" +
-                         "<td>" + 0 + "</td>" +
-                         "<td>" + 0 + "</td></tr>"     );*/
+
+                        $("#anomalies").html("");
+
+
+                        /// + product.UploadTime + "</td>" +
+                        ////  "<td>" + product.Status
+                        $("#anomalies").append("  <tr>   <th>Id</th>                <th>Description</th>                <th>Time</th></tr >");
+
+                        $("#anomalies").append("<tr><td>" + arrItems[0].Id + "</td>" +
+                            "<td>" + arrItems[0].Description + "</td>" +
+                            "<td>" + arrItems[0].Time + "</td></tr>");
+                        /*
+                         $("#anomalies").append("<tr><td>" + 5 + "</td>" +
+                             "<td>" + 3 + "</td>" +
+                             "<td>" + 4 + "</td>" +
+                             "<td>" + 0 + "</td>" +
+                             "<td>" + 0 + "</td></tr>"     );*/
+                    });
+                }
+                //    document.getElementById('click').onclick = clicka(event);
+            </script>
+            <script>
+                var productsUrl = "../api/models";
+                $.getJSON(productsUrl, function (data) {
+
+                    data.forEach(function (product) {
+                        $("#myUL").append("<li><a onclick=" + clicka(event) + " href=#>" + "Model_" + product.Id + "</a> </li>"
+                        );
+                    });
                 });
-            }
-            //    document.getElementById('click').onclick = clicka(event);
-        </script>
-        <script>
-            var productsUrl = "../api/models";
-            $.getJSON(productsUrl, function (data) {
-
-                data.forEach(function (product) {
-                    $("#myUL").append("<li><a onclick=" + clicka(event) + " href=#>" + "Model_" + product.Id + "</a> </li>"
-                    );
-                });
-            });
-        </script>
+            </script>
 
 
 
-        <script>
-            function myFunction() {
-                var input, filter, ul, li, a, i, txtValue;
-                input = document.getElementById("myInput");
-                filter = input.value.toUpperCase();
-                ul = document.getElementById("myUL");
-                li = ul.getElementsByTagName("li");
-                for (i = 0; i < li.length; i++) {
-                    a = li[i].getElementsByTagName("a")[0];
-                    txtValue = a.textContent || a.innerText;
-                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                        li[i].style.display = "";
-                    } else {
-                        li[i].style.display = "none";
+            <script>
+                function myFunction() {
+                    var input, filter, ul, li, a, i, txtValue;
+                    input = document.getElementById("myInput");
+                    filter = input.value.toUpperCase();
+                    ul = document.getElementById("myUL");
+                    li = ul.getElementsByTagName("li");
+                    for (i = 0; i < li.length; i++) {
+                        a = li[i].getElementsByTagName("a")[0];
+                        txtValue = a.textContent || a.innerText;
+                        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                            li[i].style.display = "";
+                        } else {
+                            li[i].style.display = "none";
+                        }
                     }
                 }
-            }
-        </script>
+            </script>
 
 
 
 
-    </div>
+        </div>
 
-
+        -->
 
     <script>$('#thisdiv').load(document.URL + ' #thisdiv');</script>
     <div class="table" id="thisdiv">
@@ -421,10 +420,10 @@
 
                     $("#anomalies").append("<tr><td>" + product.Id + "</td>" +
                         "<td>" + product.Description + "</td>" +
-                        "<td>" + product.Time + "</td></tr>"    );
+                        "<td>" + product.Time + "</td></tr>");
 
                 });
-               
+
             });
         </script>
     </div>
@@ -447,26 +446,26 @@
     <div>
 
         <!--
-    <p>Click on the "Choose File" button to upload: </p>
+        <p>Click on the "Choose File" button to upload: </p>
 
 
-    <p>
-        CSV file:
-    </p>
-    <form name="form1" method="post" action="../api/docfile" enctype="multipart/form-data">
-        <div>
-            <input name="csv" accept=".csv" type="file" />
-        </div>
-        <div>
-            <input type="submit" value="Upload" />
-        </div>
-    </form>
-    <p>
-        train file:
-          <script>
-        function sub() {
+        <p>
+            CSV file:
+        </p>
+        <form name="form1" method="post" action="../api/docfile" enctype="multipart/form-data">
+            <div>
+                <input name="csv" accept=".csv" type="file" />
+            </div>
+            <div>
+                <input type="submit" value="Upload" />
+            </div>
+        </form>
+        <p>
+            train file:
+              <script>
+            function sub() {
 
-    </p>-->
+        </p>-->
 
 
         <form name="form1" method="post" action="../api/docfile" enctype="multipart/form-data">
@@ -485,7 +484,7 @@
             </div>
             <div>
                 <!--
-            <input type="submit" value="Upload" />-->
+                <input type="submit" value="Upload" />-->
             </div>
             <label for="AlgorithemType">Choose algorithm:</label>
             <select name="AlgorithemType" id="AlgorithemType">
@@ -496,7 +495,7 @@
             <input type="submit" value="Submit" onclick="sub()">
         </form>
 
-        <script >
+        <script>
             var prevdataL = 2;
             function sub() {
 
@@ -506,48 +505,48 @@
                     var newL = data.length;
                     console.log("prev data size:");
                     console.log(prevdataL);
-                    console.log("new data size:" );
+                    console.log("new data size:");
                     console.log(newL);
-                   //// if (prevdataL < newL) {
-                        $("#anomalies").html("");
-                        $("#anomalies").append("  <tr>   <th>Id</th>                <th>Description</th>                <th>Time</th></tr >");
-                        data.forEach(function (product) {
+                    //// if (prevdataL < newL) {
+                    $("#anomalies").html("");
+                    $("#anomalies").append("  <tr>   <th>Id</th>                <th>Description</th>                <th>Time</th></tr >");
+                    data.forEach(function (product) {
 
-                            $("#anomalies").append("<tr><td>" + product.Id + "</td>" +
-                                "<td>" + product.Description + "</td>" +
-                                "<td>" + product.Time + "</td></tr>");
+                        $("#anomalies").append("<tr><td>" + product.Id + "</td>" +
+                            "<td>" + product.Description + "</td>" +
+                            "<td>" + product.Time + "</td></tr>");
 
-                            // end function (product)
-                        });
+                        // end function (product)
+                    });
 
-                        prevdataL = newL;
-                        console.log("now prev new data size");
-                        console.log(prevdataL);
-        ///end if
-                        console.log(prevdataL);
+                    prevdataL = newL;
+                    console.log("now prev new data size");
+                    console.log(prevdataL);
+                    ///end if
+                    console.log(prevdataL);
 
-                        ///end if
-                 ///  };
+                    ///end if
+                    ///  };
                     // end function (data)
                 });
-  // end sub
+                // end sub
             };
-                    
-                    //    document.getElementById('click').onclick = clicka(event);
+
+                            //    document.getElementById('click').onclick = clicka(event);
         </script>
 
 
         <br><br>
         <!--
-    <form action="/action_page.php">
-        <label for="AlgorithemType">Choose algorithm:</label>
-        <select name="AlgorithemType" id="AlgorithemType">
-            <option value="volvo">hybrid</option>
-            <option value="saab">regression</option>
-        </select>
-        <br><br>
-        <input type="submit" value="Submit">
-    </form>-->
+        <form action="/action_page.php">
+            <label for="AlgorithemType">Choose algorithm:</label>
+            <select name="AlgorithemType" id="AlgorithemType">
+                <option value="volvo">hybrid</option>
+                <option value="saab">regression</option>
+            </select>
+            <br><br>
+            <input type="submit" value="Submit">
+        </form>-->
 
 
 
@@ -555,7 +554,7 @@
     </div>
 
     <!--
-       
+
     <br />
     <script>
         var r = {
@@ -611,12 +610,6 @@
 
 
         -->
-    <div>
 
-
-        <div>
-            <iframe src="http://localhost:8080/Home/About1" width="500" height="500"></iframe>
-        </div>
-    </div>
 </body>
 </html>

@@ -8,8 +8,9 @@ using System.Threading.Tasks;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.IO;*/
-
 using System;
+using System.Threading;
+
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -630,6 +631,7 @@ namespace WebApp.myDetectorServer
 		{
 			string json = JsonSerializer.Serialize(this.reports);
 			string path =this.pathToSave;
+			Thread.Sleep(2000);
 			File.WriteAllText(path, json);
 
 
