@@ -275,7 +275,8 @@
                 var productsUrl = "../api/models";
                 $.getJSON(productsUrl, function (data) {
                     console.log(data);
-
+                    console.log(data.length);
+                    
                     var arrItems = [];      // THE ARRAY TO STORE JSON ITEMS.
                     $.each(data, function (index, value) {
                         console.log(value.Id);
@@ -523,24 +524,7 @@
         -->
     <div>
 
-        <form id="moodleform" target="iframe"
-              method="post" action="http://localhost:8080/Home/About1">
-          
-        </form>
-        <iframe name="iframe"></iframe>
-        <script type="text/javascript">
-            document.getElementById('moodleform').submit();
-        </script>
-
-
-
-        <script>
-            function refreshPage() {
-                window.location.reload();
-                $('#thisdiv').load(document.URL + ' #thisdiv');
-            }
-        </script>
-        <button type="submit" onClick="refreshPage()">Refresh Button</button>
+     
         <div>
             <iframe src="http://localhost:8080/Home/About1" width="500" height="500"></iframe>
         </div>

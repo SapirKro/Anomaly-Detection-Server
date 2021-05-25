@@ -45,15 +45,45 @@
         });
 
         });
-
-
+        var prevdataL=2;
     </script>
     <script>
-        $(document).ready(function(){
+       $(document).ready(function(){
         $("#btn2").click(function(){
-        $("#thisdiv").load(window.location.href + " #thisdiv" );
-        });
 
+
+                   var productsUrl = "../api/models";
+            $.getJSON(productsUrl, function (data) {
+               var newL=data.length;
+         console.log(prevdataL);
+          console.log(newL);
+        if(prevdataL<newL){
+                 $("#anomalies").html("");
+          $("#anomalies").append("  <tr>   <th>Id</th>                <th>Description</th>                <th>Time</th></tr >");
+                data.forEach(function (product) {
+
+                    $("#anomalies").append("<tr><td>" + product.Id + "</td>" +
+                        "<td>" + product.Description + "</td>" +
+                        "<td>" + product.Time + "</td></tr>"  );
+
+          // end function (product)
+                });
+
+        prevdataL=newL;
+          console.log(prevdataL);
+        ///end if
+        };
+            // end function (data)
+            });
+
+
+
+
+
+
+        // end click
+        });
+           // end reasy
         });
 
 
@@ -80,7 +110,6 @@
 
 
     <script>
- 
             var productsUrl = "../api/models";
             $.getJSON(productsUrl, function (data) {
 
@@ -94,7 +123,6 @@
 
                 });
             });
-      
     </script>
 </div>
 
@@ -105,4 +133,4 @@
 
 </div>
 <button id="btn">click me</button>
-<button id="btn2">222</button>
+<button id="btn2">22</button>
