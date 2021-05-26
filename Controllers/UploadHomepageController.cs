@@ -26,9 +26,9 @@ namespace WebApp.Controllers
 	}
 	
 
-	public class DocFileController : ApiController
+	public class UploadHomepageController : ApiController
     {
-        private List<String> mydocfiles = new List<string>();
+        private List<String> myfiles = new List<string>();
          DetectorServer server;
 
         /// <summary>
@@ -67,7 +67,7 @@ namespace WebApp.Controllers
         ///the folder "App_Data" in the project location.
         ////the full path for the files saved in mydocfiles
 
-        public void Post()
+        public void PostFromHomePage()
         {
             
             HttpResponseMessage result = null;
@@ -112,7 +112,7 @@ namespace WebApp.Controllers
 				///
 				String trainFilePath="NULL";
 				String testFilePath = "NULL";
-				
+				globalsModels.num++;
 				foreach (string file in httpRequest.Files)
                 {
 					index++;
@@ -138,33 +138,32 @@ this.Request.CreateErrorResponse(HttpStatusCode.BadRequest, "one of the file isn
 					if (file.Contains(trainFileString))
                     {
 
-                        name =trainFileString + AlgoType + name;
+                        name =trainFileString + globalsModels.num+ AlgoType + name;
 						var filePath = HttpContext.Current.Server.MapPath("~/App_Data/" + name);
 						trainFilePath = filePath;
 						postedFile.SaveAs(filePath);
-						mydocfiles.Add(filePath);
+						myfiles.Add(filePath);
 
 					}
 
                     if (file.Contains(testFileDString))
                     {
-                        name = testFileDString + AlgoType + name;
+                        name = testFileDString + globalsModels.num+ AlgoType + name;
 						var filePath = HttpContext.Current.Server.MapPath("~/App_Data/" + name);
 						testFilePath = filePath;
 						postedFile.SaveAs(filePath);
-						mydocfiles.Add(filePath);
+						myfiles.Add(filePath);
 
 					}
                  
                 }
-				if ((testFilePath.Equals("NULL"))==false)
+				if ( (testFilePath.Equals("NULL"))|| (trainFilePath.Equals("NULL")  ))
 				{
-					if ((trainFilePath.Equals("NULL")) == false)
-					{
-						globalsModels.num++;
-					}
+					
+						globalsModels.num--;
+					
 
-					}
+				}
                 ////sending the files to the server
                 string jsonName = "Model_" + globalsModels.num + ".json";
                 var serverUploadPath = HttpContext.Current.Server.MapPath("~/App_Data/"+ jsonName);
@@ -176,7 +175,7 @@ this.Request.CreateErrorResponse(HttpStatusCode.BadRequest, "one of the file isn
 					Console.WriteLine("done");
 					LoadJson(serverUploadPath);
 				
-                result = Request.CreateResponse(HttpStatusCode.Created, mydocfiles);
+                result = Request.CreateResponse(HttpStatusCode.Created, myfiles);
                 ///redirecting back to the homepage
                 var response = Request.CreateResponse(HttpStatusCode.Moved);
                 response.Headers.Location = new Uri("http://localhost:8080/");

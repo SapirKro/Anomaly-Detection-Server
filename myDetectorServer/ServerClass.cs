@@ -631,7 +631,7 @@ namespace WebApp.myDetectorServer
 		{
 			string json = JsonSerializer.Serialize(this.reports);
 			string path =this.pathToSave;
-			Thread.Sleep(2000);
+			
 			File.WriteAllText(path, json);
 
 

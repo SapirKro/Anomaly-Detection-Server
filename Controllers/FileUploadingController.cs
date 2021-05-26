@@ -17,13 +17,13 @@ namespace WebApp.Controllers
 
     public class FileUploadingController : ApiController
     {
-        private static List<String> mydocfiles = new List<string>();
+        private static List<String> myfiles = new List<string>();
 		private static DetectorServer server;
 
 		/// fucntions to upload csv files thought post method
 	
 		[HttpPost]
-        [Route("api/detect")]
+        [Route("detect")]
         public async Task<object> UploadFile()
         {
            
@@ -94,7 +94,7 @@ namespace WebApp.Controllers
 						testFilePath = filePath;
 
 					}
-					mydocfiles.Add(filePath);
+					myfiles.Add(filePath);
 
                 }
 
@@ -121,7 +121,7 @@ namespace WebApp.Controllers
 			server.Serialize();
 			Console.WriteLine(index);
 			Console.WriteLine("done");
-			object jsonObject=LoadmyJson(serverUploadPath);
+			object jsonObject= loadAndReturnMyJson(serverUploadPath);
 
 		
 			return jsonObject;
@@ -157,7 +157,7 @@ namespace WebApp.Controllers
                     var filePath = Path.Combine(root, name);
 
                     File.Move(localFileName, filePath);
-                    mydocfiles.Add(filePath);
+                    myfiles.Add(filePath);
 
                 }
             }
@@ -182,26 +182,26 @@ namespace WebApp.Controllers
             int size = files.Length;
             for (int i = 0; i < size; i++)
             {
-                if (!(mydocfiles.Contains(files[i])))
+                if (!(myfiles.Contains(files[i])))
                 {
-                    mydocfiles.Add(files[i]);
+                    myfiles.Add(files[i]);
                 }
             }
             
-            return mydocfiles;
+            return myfiles;
         }
 
 		*/
-		public object LoadmyJson(string jsonPath)
+		public object loadAndReturnMyJson(string jsonPath)
 		{
 			string allText = System.IO.File.ReadAllText(jsonPath);
 
 			object jsonObject = JsonConvert.DeserializeObject(allText);
 			
-			List<DocFileController.AnomalyObject> all = new List<DocFileController.AnomalyObject>();
+			List<UploadHomepageController.AnomalyObject> all = new List<UploadHomepageController.AnomalyObject>();
 			using (StreamReader sr = File.OpenText(jsonPath))
 			{
-				all = JsonConvert.DeserializeObject<List<DocFileController.AnomalyObject>>(sr.ReadToEnd());
+				all = JsonConvert.DeserializeObject<List<UploadHomepageController.AnomalyObject>>(sr.ReadToEnd());
 
 
 			}
