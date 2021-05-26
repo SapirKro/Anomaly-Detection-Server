@@ -78,14 +78,7 @@ namespace WebApp.Controllers
             HttpResponseMessage result = null;
             var httpRequest = HttpContext.Current.Request;
 			int index = 0;
-			/*
-        var serverUploadPath1 = HttpContext.Current.Server.MapPath("~/App_Data/" +"Model_1.json");
-                LoadJson(serverUploadPath1);
-            var response1 = Request.CreateResponse(HttpStatusCode.Moved);
-            response1.Headers.Location = new Uri("http://localhost:8080/");
-            return response1;*/
-
-
+	
 			///upload the files
 			if (httpRequest.Files.Count > 0)
             {
@@ -199,9 +192,9 @@ this.Request.CreateErrorResponse(HttpStatusCode.BadRequest, "one of the files is
 this.Request.CreateErrorResponse(HttpStatusCode.BadRequest, "there isnt any file to upload");
 				throw new HttpResponseException(response22);
 
-				///result = Request.CreateResponse(HttpStatusCode.BadRequest);
+			
             }
-            ////return result;
+    
 			return;
 		}
 

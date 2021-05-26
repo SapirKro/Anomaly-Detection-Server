@@ -52,15 +52,6 @@ namespace WebApp.Controllers
                 globalsModels.num++;
 
 
-
-				/*string filename=provider.FileData[0].Headers.ContentDisposition.FileName;
-				///chage to only 2 files
-				if ( filename.Contains(".csv")==false )
-				{
-					return $"Error not CSV file";
-
-				}*/
-
 				
 				foreach (var file in provider.FileData)
                 {
