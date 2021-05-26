@@ -11,8 +11,8 @@
         function sub() {
 
             console.log("sapir");
-            var productsUrl = "../api/models";
-            $.getJSON(productsUrl, function (data) {
+            var myModelsUrl = "../api/models";
+            $.getJSON(myModelsUrl, function (data) {
                 var newL = data.length;
                 console.log("prev data size:");
                 console.log(prevdataL);
@@ -197,8 +197,8 @@
 
 
         <script>
-            var productsUrl = "../api/models";
-            $.getJSON(productsUrl, function (data) {
+            var myModelsUrl = "../api/models";
+            $.getJSON(myModelsUrl, function (data) {
 
                 data.forEach(function (product) {
 
@@ -315,8 +315,8 @@
                     console.log("num " + num);
 
 
-                    var productsUrl = "../api/models";
-                    $.getJSON(productsUrl, function (data) {
+                    var myModelsUrl = "../api/models";
+                    $.getJSON(myModelsUrl, function (data) {
                         console.log(data);
                         console.log(data.length);
 
@@ -356,8 +356,8 @@
                 //    document.getElementById('click').onclick = clicka(event);
             </script>
             <script>
-                var productsUrl = "../api/models";
-                $.getJSON(productsUrl, function (data) {
+                var myModelsUrl = "../api/models";
+                $.getJSON(myModelsUrl, function (data) {
 
                     data.forEach(function (product) {
                         $("#myUL").append("<li><a onclick=" + clicka(event) + " href=#>" + "Model_" + product.Id + "</a> </li>"
@@ -413,8 +413,8 @@
 
 
         <script>
-            var productsUrl = "../api/models";
-            $.getJSON(productsUrl, function (data) {
+            var myModelsUrl = "../api/models";
+            $.getJSON(myModelsUrl, function (data) {
 
                 data.forEach(function (product) {
 
@@ -500,8 +500,8 @@
             function sub() {
 
                 console.log("sapir");
-                var productsUrl = "../api/models";
-                $.getJSON(productsUrl, function (data) {
+                var myModelsUrl = "../api/models";
+                $.getJSON(myModelsUrl, function (data) {
                     var newL = data.length;
                     console.log("prev data size:");
                     console.log(prevdataL);

@@ -14,36 +14,38 @@ using Newtonsoft.Json;
 namespace WebApp.Controllers
 {
 
-    /// <summary>
+
     /// global struct so we can get to the models from other Controllers
-    /// </summary>
-    public struct globalsModels
+      public struct globalsModels
     {
 
 		public static ModelsManager allmodels = new ModelsManager();
 		public static int num= allmodels.GetAllModels().Count();
 
 	}
-	
 
+	/// <summary>
+	/// this controller has post method to upload files from the homepage
+	/// </summary>
 	public class UploadHomepageController : ApiController
     {
         private List<String> myfiles = new List<string>();
          DetectorServer server;
 
-        /// <summary>
+      
         /// load json file and add every AnomalyObject to the models.(so we can see the anomalys in the homepage's table)
-        /// </summary>
-        /// <param name="jsonPath"></param>
+     
         public void LoadJson(string jsonPath)
         {
-            List<AnomalyObject> all = new List<AnomalyObject>();
+			///loading all the info to List<AnomalyObject> all 
+			List<AnomalyObject> all = new List<AnomalyObject>();
             using (StreamReader sr = File.OpenText(jsonPath))
             {
                 all = JsonConvert.DeserializeObject<List<AnomalyObject>>(sr.ReadToEnd());
                 
                 
             }
+			///creating the anomalies in the model
             for (int i = 0; i < all.Count(); i++)
             {
                 string des = all[i].description;
@@ -56,7 +58,10 @@ namespace WebApp.Controllers
             Console.WriteLine("done");
         }
 
-        public class AnomalyObject
+		/// <summary>
+		/// AnomalyObject as in the server
+		/// </summary>
+		public class AnomalyObject
         {
             public string description { get; set; }
             public string timeStep { get; set; }
@@ -96,7 +101,7 @@ namespace WebApp.Controllers
                 if (httpRequest.Files[0].FileName == ""|| httpRequest.Files[1].FileName == "")
                 {
 					HttpResponseMessage response22 =
-	this.Request.CreateErrorResponse(HttpStatusCode.BadRequest, "you forget to upload one of the files");
+	this.Request.CreateErrorResponse(HttpStatusCode.BadRequest, "one of the files is missing");
 					throw new HttpResponseException(response22);
 
 					
@@ -105,10 +110,11 @@ namespace WebApp.Controllers
                     LoadJson(serverUploadPath1);
                     var response1 = Request.CreateResponse(HttpStatusCode.Moved);
                     response1.Headers.Location = new Uri("http://localhost:8080/");
+					///////>>>>>>>>if loop ^^^^^^^^^^ to only for testing .delete later<<<<<<<<<*/
 					return; 
                 }
 				
-				///////>>>>>>>>if loop ^^^^^^^^^^ to only for testing .delete later<<<<<<<<<*/
+			
 				///
 				String trainFilePath="NULL";
 				String testFilePath = "NULL";
@@ -157,11 +163,15 @@ this.Request.CreateErrorResponse(HttpStatusCode.BadRequest, "one of the file isn
 					}
                  
                 }
+				///if we didnt get the test and train file,we decrease the number of model and throw error messege
 				if ( (testFilePath.Equals("NULL"))|| (trainFilePath.Equals("NULL")  ))
 				{
 					
 						globalsModels.num--;
-					
+					HttpResponseMessage response22 =
+this.Request.CreateErrorResponse(HttpStatusCode.BadRequest, "one of the files is missing");
+					throw new HttpResponseException(response22);
+
 
 				}
                 ////sending the files to the server
@@ -175,16 +185,21 @@ this.Request.CreateErrorResponse(HttpStatusCode.BadRequest, "one of the file isn
 					Console.WriteLine("done");
 					LoadJson(serverUploadPath);
 				
-                result = Request.CreateResponse(HttpStatusCode.Created, myfiles);
+              /*  result = Request.CreateResponse(HttpStatusCode.Created, myfiles);
                 ///redirecting back to the homepage
                 var response = Request.CreateResponse(HttpStatusCode.Moved);
                 response.Headers.Location = new Uri("http://localhost:8080/");
-				///return response;
+				///return response;*/
 				return;
 			}
 			else
             {
-                result = Request.CreateResponse(HttpStatusCode.BadRequest);
+				//there isnt any file
+				HttpResponseMessage response22 =
+this.Request.CreateErrorResponse(HttpStatusCode.BadRequest, "there isnt any file to upload");
+				throw new HttpResponseException(response22);
+
+				///result = Request.CreateResponse(HttpStatusCode.BadRequest);
             }
             ////return result;
 			return;

@@ -15,7 +15,11 @@ using WebApp.myDetectorServer;
 namespace WebApp.Controllers
 {
 
-    public class FileUploadingController : ApiController
+	/// <summary>
+	/// FileUploadingController get the files from outside,client send post reqest.
+	///FileUploadingController send the file to the server and return json
+	/// </summary>
+	public class FileUploadingController : ApiController
     {
         private static List<String> myfiles = new List<string>();
 		private static DetectorServer server;
@@ -24,7 +28,7 @@ namespace WebApp.Controllers
 	
 		[HttpPost]
         [Route("detect")]
-        public async Task<object> UploadFile()
+        public async Task<object> UploadFiles()
         {
            
            
@@ -38,6 +42,7 @@ namespace WebApp.Controllers
 			String testFilePath = "NULL";
 			////string AlgoType11 = HttpContext.Current.Request["type"];
 			string AlgoType12 = HttpContext.Current.Request.QueryString["type"];
+			//temp for testing
 			string temppp = provider.FormData.ToString().Trim('=').ToLower();
 			int index = 0; 
 			try
@@ -78,12 +83,14 @@ namespace WebApp.Controllers
 					
 					var localFileName = file.LocalFileName;
                     var filePath = Path.Combine(root, name);
+					///if we got file with the same name,we delete the old file and insert the new one
 					if (File.Exists(filePath))
 					{
 						File.Delete(filePath);
 					}
-					////File.Move(@"c:\test\SomeFile.txt", @"c:\test\Test\SomeFile.txt");
+					
 					File.Move(localFileName, filePath);
+					///saving the path to the train and test file for the server
 					if (name.Contains(trainFileString))
 					{
 						trainFilePath = filePath;
@@ -192,8 +199,10 @@ namespace WebApp.Controllers
         }
 
 		*/
+		///loading all the info ,saving it in the model and returning json
 		public object loadAndReturnMyJson(string jsonPath)
 		{
+			///loading all the info ,saving it in the model and returning json
 			string allText = System.IO.File.ReadAllText(jsonPath);
 
 			object jsonObject = JsonConvert.DeserializeObject(allText);

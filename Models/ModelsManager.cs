@@ -7,43 +7,45 @@ using System.Web;
 
 namespace WebApp.Models
 {
-  
+  /// <summary>
+  /// contain all the anomalis info
+  /// </summary>
     public class ModelsManager : IModelsManager
     {
 
-        private static List<Model> products = new List<Model>()
+        private static List<Model> myModels = new List<Model>()
         {
              new Model { Id = 1,Description= "example", Time ="100" } ,
           };
 
         public void AddModel(Model p)
         {
-            products.Add(p);
+            myModels.Add(p);
             
         }
 
         public void DeleteModel(int id)
         {
-            Model p = products.Where(x => x.Id == id).FirstOrDefault();
+            Model p = myModels.Where(x => x.Id == id).FirstOrDefault();
             if (p == null)
                 throw new Exception("model not found");
-            products.Remove(p);
+            myModels.Remove(p);
         }
 
         public IEnumerable<Model> GetAllModels()
         {
-            return products;
+            return myModels;
         }
 
         public Model GetModelById(int id)
         {
-            Model p = products.Where(x => x.Id == id).FirstOrDefault();
+            Model p = myModels.Where(x => x.Id == id).FirstOrDefault();
             return p;
         }
 
         public void UpdateModel(Model p)
         {
-            Model prod = products.Where(x => x.Id == p.Id).FirstOrDefault();
+            Model prod = myModels.Where(x => x.Id == p.Id).FirstOrDefault();
             prod.Time = p.Time;
             prod.Description = p.Description;
         }

@@ -9,21 +9,20 @@ using WebApp.Models;
 
 namespace WebApp.Controllers
 {
-   
-    public class ModelsController : ApiController
+	public class ModelsController : ApiController
     {
-        private IModelsManager productsManager = new ModelsManager();
+        private IModelsManager myModelsManager = new ModelsManager();
 
         // GET: api/Models
         public IEnumerable<Model> GetAllModels()
         {
-            return productsManager.GetAllModels();
+            return myModelsManager.GetAllModels();
         }
 
         // GET: api/Models/5
         public Model Get(int model_id)
         {
-            return productsManager.GetModelById(model_id);
+            return myModelsManager.GetModelById(model_id);
             ///return "value";
         }
 
@@ -31,7 +30,7 @@ namespace WebApp.Controllers
         [HttpPost]
         public Model AddModel(/*String t,*/Model p)
         {
-            productsManager.AddModel(p);
+            myModelsManager.AddModel(p);
             return p;
         }
 
