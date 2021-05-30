@@ -10,6 +10,7 @@ using System.Web.Http;
 using WebApp.Models;
 using System.IO;
 using Newtonsoft.Json;
+using System.Text;
 
 namespace WebApp.Controllers
 {
@@ -29,7 +30,7 @@ namespace WebApp.Controllers
 	/// </summary>
 	public class UploadHomepageController : ApiController
     {
-        private List<String> myfiles = new List<string>();
+        private  static List<String> myfiles = new List<string>();
          DetectorServer server;
 
       
@@ -83,8 +84,8 @@ namespace WebApp.Controllers
 			if (httpRequest.Files.Count > 0)
             {
                 System.Console.WriteLine("You received the call!");
-                string trainFileString = "trainFile";
-                string testFileDString = "testFile";
+                string trainFileString = "train";
+                string testFileDString = "test";
                 string name;
                 string AlgoType = HttpContext.Current.Request.Form["AlgorithemType"];
                 
@@ -139,30 +140,50 @@ this.Request.CreateErrorResponse(HttpStatusCode.BadRequest, "one of the file isn
 
                         name =trainFileString + globalsModels.num+ AlgoType + name;
 						var filePath = HttpContext.Current.Server.MapPath("~/App_Data/" + name);
-						trainFilePath = filePath;
 						postedFile.SaveAs(filePath);
-						myfiles.Add(filePath);
+						bool isEq1=FilesAreEqual(myfiles, filePath);
+						if (isEq1 == false)
+						{
 
+							trainFilePath = filePath;
+						///postedFile.SaveAs(filePath);
+							myfiles.Add(filePath);
+						}
+						if (isEq1 == true)
+						{
+							trainFilePath = "NULL";
+						}
 					}
 
                     if (file.Contains(testFileDString))
                     {
                         name = testFileDString + globalsModels.num+ AlgoType + name;
 						var filePath = HttpContext.Current.Server.MapPath("~/App_Data/" + name);
-						testFilePath = filePath;
 						postedFile.SaveAs(filePath);
-						myfiles.Add(filePath);
+						bool isEq2 = FilesAreEqual(myfiles, filePath);
+						if (isEq2 == false)
+						{
+							testFilePath = filePath;
+						///	postedFile.SaveAs(filePath);
+							myfiles.Add(filePath);
+						}
+						if (isEq2 == true)
+						{
+							testFilePath = "NULL";
+						}
 
 					}
                  
                 }
+
+			
 				///if we didnt get the test and train file,we decrease the number of model and throw error messege
 				if ( (testFilePath.Equals("NULL"))|| (trainFilePath.Equals("NULL")  ))
 				{
 					
 						globalsModels.num--;
 					HttpResponseMessage response22 =
-this.Request.CreateErrorResponse(HttpStatusCode.BadRequest, "one of the files is missing");
+this.Request.CreateErrorResponse(HttpStatusCode.BadRequest, "one of the files is missing or use already upload this files");
 					throw new HttpResponseException(response22);
 
 
@@ -200,7 +221,30 @@ this.Request.CreateErrorResponse(HttpStatusCode.BadRequest, "there isnt any file
 
 
 
+		const int BYTES_TO_READ = sizeof(Int64);
 
-    }
+		 bool FilesAreEqual(List<String> myfiles, string path)
+		{
+			int i = 0;
+			while (i< myfiles.Count()) {
+					byte[] bytes1 = Encoding.Convert(Encoding.GetEncoding(1252), Encoding.ASCII, Encoding.GetEncoding(1252).GetBytes(File.ReadAllText(path)));
+					byte[] bytes2 = Encoding.Convert(Encoding.GetEncoding(1252), Encoding.ASCII, Encoding.GetEncoding(1252).GetBytes(File.ReadAllText(myfiles.ElementAt(i))));
+
+					if (Encoding.ASCII.GetChars(bytes1).SequenceEqual(Encoding.ASCII.GetChars(bytes2)))
+					{
+						//matched! 
+						Console.WriteLine("match");
+						return true;
+					}
+					else
+					{
+						Console.WriteLine("not match");
+
+					}
+				i++;
+				}
+			return false;
+		}
+	}
 }
 
