@@ -24,4 +24,6 @@ Developer that want to work on our app need to have frameworks 4.7.2 and .NET 5.
 UML diagram:  
  [UML.pdf](https://github.com/SapirKro/WebApplication13/blob/master/UML.pdf)  
 video of user story 1:  
- [userstory1](https://github.com/SapirKro/Anomaly-Detection-Server/blob/master/userstory1.mp4)
+ [userstory1](https://github.com/SapirKro/Anomaly-Detection-Server/blob/master/userstory1.mp4)  
+ video of user story 2:  
+[userstory2](https://github.com/SapirKro/Anomaly-Detection-Server/blob/master/userstory2.mp4)
