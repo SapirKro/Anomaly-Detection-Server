@@ -88,8 +88,7 @@ namespace WebApp.Controllers
                 string testFileDString = "test";
                 string name;
                 string AlgoType = HttpContext.Current.Request.Form["AlgorithemType"];
-				try
-				{
+			
 					/////if submit is pressed without any upload file
 					if (httpRequest.Files[0].FileName == "" || httpRequest.Files[1].FileName == "")
 					{
@@ -106,11 +105,7 @@ namespace WebApp.Controllers
 						///////>>>>>>>>if loop ^^^^^^^^^^ to only for testing .delete later<<<<<<<<<*/
 						return;
 					}
-				}
-				catch (Exception e)
-				{
-					return ;//// $"Error: {e.Message}";
-				}
+			
 
 
 				///
@@ -165,6 +160,7 @@ namespace WebApp.Controllers
                         name = testFileDString + globalsModels.num+ AlgoType + name;
 						var filePath = HttpContext.Current.Server.MapPath("~/App_Data/" + name);
 						postedFile.SaveAs(filePath);
+						
 						bool isEq2 = FilesAreEqual(myfiles, filePath);
 						if (isEq2 == false)
 						{
