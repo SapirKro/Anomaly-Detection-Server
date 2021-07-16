@@ -18,11 +18,11 @@ Models:
    This directory contains the models.
 
 ## How to use
-Developer that want to work on our app need to have frameworks 4.7.2 and .NET 5.0 SDK or later.
-In addition,make sure the "System.Web.Http.HttpResponseException" dont handle by the debugger by following this steps:
-1.open Exeption Setting (ctrl +alt +E ) 
-2.right click on "Commom languge Runtime Exceptions" and add "System.Web.Http.HttpResponseException".
-3.right click on "System.Web.Http.HttpResponseException"--> add condition: make sure you write "WebApplication13.dll" in the text box and click on "Not Equals".
+Developer that want to work on our app need to have frameworks 4.7.2 and .NET 5.0 SDK or later.  
+In addition,make sure the "System.Web.Http.HttpResponseException" doesn't handled by the debugger:  
+1.open Exceptions Setting (ctrl + alt + E)   
+2.Right click on "Common languge Runtime Exceptions" and add "System.Web.Http.HttpResponseException".  
+3.Right click on "System.Web.Http.HttpResponseException"--> add condition: make sure you write "WebApplication13.dll" in the text box and click on "Not Equals".  
 
 
 UML diagram:  
