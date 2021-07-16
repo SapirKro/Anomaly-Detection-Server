@@ -139,8 +139,7 @@ namespace WebApp.Controllers
 
 
 						}
-					}
-				
+					
 					if (file.Contains(trainFileString))
                     {
 
