@@ -129,8 +129,7 @@ namespace WebApp.Controllers
 					var postedFile = httpRequest.Files[file];
 
                     name = postedFile.FileName;
-					try
-					{
+					
 						if (name.Contains(".csv") == false)
 						{
 
@@ -141,10 +140,7 @@ namespace WebApp.Controllers
 
 						}
 					}
-					catch (Exception e)
-					{
-						return;
-					}
+				
 					if (file.Contains(trainFileString))
                     {
 
