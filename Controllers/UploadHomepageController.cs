@@ -88,27 +88,31 @@ namespace WebApp.Controllers
                 string testFileDString = "test";
                 string name;
                 string AlgoType = HttpContext.Current.Request.Form["AlgorithemType"];
-                
-            
-             
-                /////if submit is pressed without any upload file
-                if (httpRequest.Files[0].FileName == ""|| httpRequest.Files[1].FileName == "")
-                {
-					HttpResponseMessage response22 =
-	this.Request.CreateErrorResponse(HttpStatusCode.BadRequest, "one of the files is missing");
-					throw new HttpResponseException(response22);
+				try
+				{
+					/////if submit is pressed without any upload file
+					if (httpRequest.Files[0].FileName == "" || httpRequest.Files[1].FileName == "")
+					{
+						HttpResponseMessage response22 =
+		this.Request.CreateErrorResponse(HttpStatusCode.BadRequest, "one of the files is missing");
+						throw new HttpResponseException(response22);
 
-					
-					///////>>>>>>>>only for testing .delete later<<<<<<<<<
-					var serverUploadPath1 = HttpContext.Current.Server.MapPath("~/App_Data/" + "Model_1.json");
-                    LoadJson(serverUploadPath1);
-                    var response1 = Request.CreateResponse(HttpStatusCode.Moved);
-                    response1.Headers.Location = new Uri("http://localhost:8080/");
-					///////>>>>>>>>if loop ^^^^^^^^^^ to only for testing .delete later<<<<<<<<<*/
-					return; 
-                }
-				
-			
+
+						///////>>>>>>>>only for testing .delete later<<<<<<<<<
+						var serverUploadPath1 = HttpContext.Current.Server.MapPath("~/App_Data/" + "Model_1.json");
+						LoadJson(serverUploadPath1);
+						var response1 = Request.CreateResponse(HttpStatusCode.Moved);
+						response1.Headers.Location = new Uri("http://localhost:8080/");
+						///////>>>>>>>>if loop ^^^^^^^^^^ to only for testing .delete later<<<<<<<<<*/
+						return;
+					}
+				}
+				catch (Exception e)
+				{
+					return ;//// $"Error: {e.Message}";
+				}
+
+
 				///
 				String trainFilePath="NULL";
 				String testFilePath = "NULL";
@@ -125,16 +129,18 @@ namespace WebApp.Controllers
 					var postedFile = httpRequest.Files[file];
 
                     name = postedFile.FileName;
-					if (name.Contains(".csv") == false)
-					{
-						
-						HttpResponseMessage response22 =
-this.Request.CreateErrorResponse(HttpStatusCode.BadRequest, "one of the file isnt CSV file");
-						throw new HttpResponseException(response22);
-						
-
-					}
 					
+						if (name.Contains(".csv") == false)
+						{
+
+							HttpResponseMessage response22 =
+	this.Request.CreateErrorResponse(HttpStatusCode.BadRequest, "one of the file isnt CSV file");
+							throw new HttpResponseException(response22);
+
+
+						}
+					}
+				
 					if (file.Contains(trainFileString))
                     {
 
