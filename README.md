@@ -23,6 +23,8 @@ In addition,make sure the "System.Web.Http.HttpResponseException" doesn't handle
 1.open Exceptions Setting (ctrl + alt + E)   
 2.Right click on "Common languge Runtime Exceptions" and add "System.Web.Http.HttpResponseException".  
 3.Right click on "System.Web.Http.HttpResponseException"--> add condition: make sure you write "WebApplication13.dll" in the text box and click on "Not Equals".  
+It suppose to look like this:
+
 
 
 UML diagram:  
