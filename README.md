@@ -20,11 +20,12 @@ Models:
 ## How to use
 Developer that want to work on our app need to have frameworks 4.7.2 and .NET 5.0 SDK or later.  
 In addition,make sure the "System.Web.Http.HttpResponseException" doesn't handled by the debugger:  
-1.open Exceptions Setting (ctrl + alt + E)   
+1.Open Exceptions Setting (ctrl + alt + E)   
 2.Right click on "Common languge Runtime Exceptions" and add "System.Web.Http.HttpResponseException".  
-3.Right click on "System.Web.Http.HttpResponseException"--> add condition: make sure you write "WebApplication13.dll" in the text box and click on "Not Equals".  
-It suppose to look like this:
-![alt text](http://url/to/img.png)
+3.Right click on "System.Web.Http.HttpResponseException"--> add condition: make sure you write "WebApplication13.dll" in the text box and click on "Not Equals".    
+  
+It suppose to look like this:  
+![alt text](https://github.com/SapirKro/Anomaly-Detection-Server/blob/master/Untitled.png)
 
 
 UML diagram:  
